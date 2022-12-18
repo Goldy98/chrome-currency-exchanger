@@ -1,0 +1,28 @@
+/* :root {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+} */
+
+@import "currency-flags/dist/currency-flags.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#app {
+  width: 350px;
+}
+
+@media (prefers-color-scheme: light) {
+}
