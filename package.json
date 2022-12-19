@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@types/chrome": "0.0.204",
     "currency-flags": "^4.0.0",
     "sass": "^1.57.0",
     "vue": "^3.2.45"

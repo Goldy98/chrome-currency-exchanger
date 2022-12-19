@@ -18,7 +18,7 @@
     </label>
 
     <div
-      class="bg-white baseinput-core w-full rounded-lg py-3 px-4 flex flex-shrink flex-nowrap items-center space-x-2 border border-[#858C94]"
+      class="bg-white baseinput-core w-full rounded-lg py-3 px-4 flex flex-shrink flex-nowrap items-center space-x-2 border border-[#858C94] h-[70px]"
       :class="{ error: hasError, success: hasSuccess }"
     >
       <span v-if="$slots.icon" class="inline-flex flex-shrink-0">
@@ -127,7 +127,6 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const errorMessage = computed((): string => {
-  console.log("props.modelValue:", props.modelValue);
   const checkResult = validateInput(props.modelValue as string);
   if (checkResult === true) return "";
   return checkResult;
@@ -148,19 +147,8 @@ function validateInput(value: string) {
 
   if (result !== true) return result;
 
-  console.log(
-    "==== AFTER REQUIRED result:",
-    value,
-    result,
-    props.type,
-    props.min,
-    props.max
-  );
-
   if (props.type === BaseInputType.NUMBER)
     result = applyMinMaxValidationForNumber(value, props.min, props.max);
-
-  console.log("==== AFTER MIN MAX result:", result, props.type);
 
   if (props.type === BaseInputType.TEXT)
     result = applyMinMaxValidationForString(value, props.min, props.max);

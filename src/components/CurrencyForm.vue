@@ -10,7 +10,7 @@
     />
 
     <BaseSelect
-      class="mt-5"
+      class="mt-5 h-20"
       name="from"
       label="From"
       :data="currencyDataForSelect"
@@ -25,7 +25,7 @@
       </template>
     </BaseSelect>
 
-    <div class="flex items-center justify-center mt-5">
+    <div class="flex items-center justify-center mt-9">
       <img
         src="@/assets/sorting-arrows.png"
         alt=""
@@ -41,6 +41,7 @@
       :data="currencyDataForSelect"
       @change="(choice) => (state.toCurrency = choice)"
       required
+      class="h-20"
     >
       <template #choosenItem>
         <PickedCurrencyInfo
@@ -50,7 +51,7 @@
       </template>
     </BaseSelect>
 
-    <div class="mt-8">
+    <div class="mt-10">
       <VButton
         label="Convert"
         :disabled="!state.canSubmit || isConverting"
@@ -68,7 +69,7 @@ import {
   currencyDataForSelect,
   CurrencyKey,
 } from "@/constants/supported-currency";
-import { computed, reactive, ComputedRef } from "vue";
+import { computed, reactive, ComputedRef, watch } from "vue";
 import BaseInput from "./forms/BaseInput.vue";
 import BaseSelect, { BaseSelectData } from "./forms/BaseSelect.vue";
 import PickedCurrencyInfo from "./PickedCurrencyInfo.vue";
@@ -84,9 +85,10 @@ type State = {
 
 type Props = {
   isConverting: boolean;
+  preSetAmount?: number;
 };
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 const state = reactive<State>({
   fromCurrency: null,
@@ -96,6 +98,16 @@ const state = reactive<State>({
     (): boolean => !!(state.fromCurrency && state.toCurrency)
   ),
 });
+
+watch(
+  () => props.preSetAmount,
+  (newVal) => {
+    if (newVal) state.amount = newVal;
+  },
+  {
+    immediate: true,
+  }
+);
 
 const emits = defineEmits<{
   (e: "submit", payload: ConversionRequestPayload): void;

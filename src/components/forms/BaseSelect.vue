@@ -20,7 +20,7 @@
     <!--select button-->
     <div
       ref="select_slotted_button"
-      class="w-full min-h-[3rem] rounded-lg border border-borderColor px-4 py-[0.688rem] min-w-[15.625rem] bg-white flex items-center justify-between cursor-pointer select_slotted_button border-[#858C94]"
+      class="w-full h-[70px] rounded-lg border border-borderColor px-4 py-[0.688rem] min-w-[15.625rem] bg-white flex items-center justify-between cursor-pointer select_slotted_button border-[#858C94]"
       :class="{ error: hasError }"
       @click="toggle"
     >
@@ -228,7 +228,6 @@ function isValidForMultiple() {
 }
 
 function choose(item: BaseSelectData): void {
-  console.log("item:", item);
   if (props.multiple) {
     handleChoiceForMultiple(item);
     emits("multiple-change", state.actualSelections);
@@ -241,7 +240,6 @@ function choose(item: BaseSelectData): void {
 }
 
 function defaultKeySearch() {
-  console.log("===== Base Select defaultKeySearch");
   const found = props.data.find((d) => d.value === props.defaultKey);
   choose(found ?? props.data[0] ?? EMPTY_CHOICE_VALUE);
 }
