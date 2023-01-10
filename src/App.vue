@@ -1,30 +1,43 @@
 <template>
-  <div class="mb-4">
-    <div class="bg-primary w-full px-3 pt-5 pb-4 flex-col justify-center">
+  <div>
+    <div
+      v-if="!isEmbedded"
+      class="bg-primary w-full px-3 pt-5 pb-4 flex-col justify-center"
+    >
       <h1 class="text-center font-bold text-3xl mb-5 text-white">
         Currency Converter
       </h1>
     </div>
-    <div class="p-5">
-      <CurrencyForm
-        @submit="onConversionRequest"
-        :is-converting="state.isConverting"
-        :pre-set-amount="state.selectedNumberFromActivePage"
-      />
-    </div>
 
-    <Transition name="fade">
-      <div class="mx-5" v-if="state.sentPayload && state.successResult">
-        <Result
-          :payload="state.sentPayload"
-          :request-result="state.successResult"
+    <div class="p-5">
+      <div class="w-full mt-2">
+        <CurrencyForm
+          @submit="onConversionRequest"
+          :is-converting="state.isConverting"
+          :pre-set-amount="state.selectedNumberFromActivePage"
+          :app-is-embedded="isEmbedded"
         />
       </div>
 
-      <div class="mx-5 mt-2" v-else-if="state.errorOccured">
+      <Transition name="fade">
+        <div class="mt-5" v-if="state.sentPayload && state.successResult">
+          <Result
+            :payload="state.sentPayload"
+            :request-result="state.successResult"
+          />
+        </div>
+        <!-- <div class="mt-2">
+        <Result
+        :payload="{ amount: 234, from: 'XOF', to: 'XOF' }"
+        :request-result="{ result: 400, usedRate: 34 }"
+        />
+      </div> -->
+      </Transition>
+
+      <div class="mt-2" v-if="state.errorOccured">
         <ConversionError />
       </div>
-    </Transition>
+    </div>
   </div>
 </template>
 
@@ -35,8 +48,6 @@ import ConversionError from "./components/ConversionError.vue";
 import CurrencyForm from "./components/CurrencyForm.vue";
 import Result from "./components/Result.vue";
 import { ActivePageEvent } from "./content";
-
-const { runtime } = chrome;
 
 type State = {
   isConverting: boolean;
@@ -50,6 +61,16 @@ const state = reactive<State>({
   isConverting: false,
   errorOccured: false,
 });
+
+const props = withDefaults(
+  defineProps<{
+    isEmbedded?: boolean;
+    preSetAmount?: number;
+  }>(),
+  {
+    isEmbedded: false,
+  }
+);
 
 const apiClient = new ApiClient();
 
@@ -89,6 +110,11 @@ async function onConversionRequest(payload: ConversionRequestPayload) {
 }
 
 onMounted(() => {
+  /**
+   * Setup a handler for the event emitted when the user
+   * select a number from the current page while the extension popup
+   * is displayed
+   **/
   chrome.runtime.onMessage.addListener((event: ActivePageEvent) => {
     if (event.name === "SelectedNumber") {
       console.log("*******", event.payload, typeof event.payload);
@@ -99,6 +125,9 @@ onMounted(() => {
       );
     }
   });
+
+  if (props.preSetAmount)
+    state.selectedNumberFromActivePage = props.preSetAmount;
 });
 </script>
 
@@ -113,3 +142,5 @@ onMounted(() => {
   opacity: 0;
 }
 </style>
+
+<style lang="scss"></style>

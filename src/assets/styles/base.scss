@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+}
+
+.currencyFormApp {
+  font-family: "Montserrat", sans-serif;
+
+  @import "reset.scss", "utility.scss", "text.scss", "margin.scss",
+    "sizing.scss";
+
+  /* Colors */
+
+  .bg-primary {
+    background-color: rgb(10 55 100);
+  }
+
+  .text-white {
+    color: rgb(255 255 255);
+  }
+
+  .red {
+    color: #da1414;
+  }
+
+  .text-DA1414 {
+    color: #da1414;
+  }
+
+  .bg-white {
+    background-color: rgb(255 255 255);
+  }
+
+  .text-primary {
+    --tw-text-opacity: 1;
+    color: rgb(10 55 100 / var(--tw-text-opacity));
+  }
+
+  .text-394452 {
+    color: #394452;
+  }
+
+  .rounded-lg {
+    border-radius: 0.5rem /* 8px */;
+  }
+
+  .rounded-md {
+    border-radius: 0.375rem /* 6px */;
+  }
+
+  .border {
+    border-style: solid;
+    border-width: 1px;
+  }
+
+  .border-0 {
+    border-width: 0px;
+  }
+
+  .border-\[\#858C94\] {
+    --tw-border-opacity: 1;
+    border-color: rgb(133 140 148 / var(--tw-border-opacity));
+  }
+
+  .bg-transparent {
+    background-color: transparent;
+  }
+
+  .overflow-hidden {
+    overflow: hidden;
+  }
+
+  .bg-\[\#DADEE3\] {
+    --tw-bg-opacity: 1;
+    background-color: rgb(218 222 227 / var(--tw-bg-opacity));
+  }
+
+  .bg-secondary {
+    --tw-bg-opacity: 1;
+    background-color: rgb(81 170 28 / var(--tw-bg-opacity));
+  }
+
+  .bg-disabledButton {
+    background-color: #7d8b94;
+  }
+
+  .bg-secondary {
+    background-color: #51aa1c;
+  }
+
+  .bg-lightRed {
+    --tw-bg-opacity: 1;
+    background-color: rgb(237 157 157 / var(--tw-bg-opacity));
+  }
+
+  .bg-lightGreen {
+    --tw-bg-opacity: 1;
+    background-color: rgb(214 239 220 / var(--tw-bg-opacity));
+  }
+
+  .text-deepBlue {
+    --tw-text-opacity: 1;
+    color: rgb(41 70 92 / var(--tw-text-opacity));
+  }
+
+  .text-secondaryBlack {
+    --tw-text-opacity: 1;
+    color: rgb(48 51 49 / var(--tw-text-opacity));
+  }
+}

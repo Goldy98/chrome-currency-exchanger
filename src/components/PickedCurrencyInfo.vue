@@ -2,9 +2,9 @@
   <div class="flex items-center">
     <div
       class="currency-flag rounded-full w-10 h-10 mr-2"
-      :class="computedCurrencyClass"
+      :style="`background-image: url(${computedCurrencyFlagUrl})`"
     ></div>
-    <span>
+    <span class="text-black">
       {{ pickedCurrency.label }}
     </span>
   </div>
@@ -14,13 +14,24 @@
 import { computed } from "vue";
 import { BaseSelectData } from "./forms/BaseSelect.vue";
 
+const CURRENCY_FLAGS_BASE_URL =
+  "https://wise.com/public-resources/assets/flags/rectangle/";
+
 const props = defineProps<{
   pickedCurrency: BaseSelectData;
 }>();
 
-const computedCurrencyClass = computed(
-  (): string => `currency-flag-${props.pickedCurrency.value?.toLowerCase()}`
+const computedCurrencyFlagUrl = computed(
+  (): string =>
+    `${CURRENCY_FLAGS_BASE_URL}${props.pickedCurrency.value?.toLowerCase()}.png`
 );
 </script>
 
-<style scoped></style>
+<style>
+.currency-flag {
+  display: inline-block;
+  width: 24px;
+  height: 16px;
+  background-size: cover;
+}
+</style>

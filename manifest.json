@@ -13,6 +13,12 @@
     "128": "icons/icon-128.png"
   },
   "permissions": ["activeTab", "scripting"],
+
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module",
+    "persistent": false
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

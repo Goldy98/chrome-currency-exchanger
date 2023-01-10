@@ -27,7 +27,7 @@
 
     <div class="flex items-center justify-center mt-9">
       <img
-        src="@/assets/sorting-arrows.png"
+        :src="sortingArrowUrl"
         alt=""
         srcset=""
         class="w-[20px] cursor-pointer"
@@ -69,12 +69,13 @@ import {
   currencyDataForSelect,
   CurrencyKey,
 } from "@/constants/supported-currency";
-import { computed, reactive, ComputedRef, watch } from "vue";
+import { computed, reactive, ComputedRef, watch, onMounted } from "vue";
 import BaseInput from "./forms/BaseInput.vue";
 import BaseSelect, { BaseSelectData } from "./forms/BaseSelect.vue";
 import PickedCurrencyInfo from "./PickedCurrencyInfo.vue";
 import VButton from "./VButton.vue";
 import { ConversionRequestPayload } from "@/api";
+import SortingArrow from "@/assets/sorting-arrows.png";
 
 type State = {
   fromCurrency: null | BaseSelectData;
@@ -86,9 +87,13 @@ type State = {
 type Props = {
   isConverting: boolean;
   preSetAmount?: number;
+  appIsEmbedded: boolean;
 };
 
 const props = defineProps<Props>();
+
+// const sortingArrowUrl = chrome.runtime.getURL(SortingArrow);
+const sortingArrowUrl = SortingArrow;
 
 const state = reactive<State>({
   fromCurrency: null,
@@ -129,6 +134,9 @@ function invertCurrency() {
   state.fromCurrency = state.toCurrency;
   state.toCurrency = tmpFromCurrency;
 }
-</script>
 
-<style scoped></style>
+onMounted(() => {
+  console.log("============== ALLLLLL");
+  console.log("chrome.runtime.getURL(SortingArrow):");
+});
+</script>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-row text-center bg-lightRed p-2 rounded-xl items-center"
+    class="flex flex-row text-center bg-lightRed px-4 p-2 rounded-xl items-center"
   >
     <RedInfoIcon class="mr-2" />
 
@@ -13,5 +13,3 @@
 <script setup lang="ts">
 import RedInfoIcon from "./icons/RedInfoIcon.vue";
 </script>
-
-<style scoped></style>

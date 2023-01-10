@@ -1,0 +1,69 @@
+/* Sizing */
+
+.w-\[20px\] {
+  width: 20px;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-\[90\%\] {
+  width: 90%;
+}
+
+.w-10 {
+  width: 2.5rem /* 40px */;
+}
+
+.h-\[55px\] {
+  height: 55px;
+}
+
+.h-20 {
+  height: 5rem /* 80px */;
+}
+
+.h-10 {
+  height: 2.5rem /* 40px */;
+}
+
+.h-\[70px\] {
+  height: 70px;
+}
+
+.h-\[40px\] {
+  height: 40px;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-x-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.25rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.min-w-\[15\.625rem\] {
+  min-width: 15.625rem /* 250px */;
+}
+
+.mr-\[12px\] {
+  margin-right: 12px;
+}
+
+.mt-\[3px\] {
+  margin-top: 3px;
+}
+
+.ml-2 {
+  margin-left: 0.5rem /* 8px */;
+}

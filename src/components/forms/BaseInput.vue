@@ -1,38 +1,29 @@
 <template>
-  <div
-    data-widget-item="baseinput"
-    class="flex flex-col items-baseline relative"
-  >
+  <div data-widget-item="baseinput" class="BaseInputComponent">
     <label
       v-if="label"
-      class="baseinput-label text-sm text-left leading-[1.125rem] -tracking-[0.1px] opacity-80 text-black font-semibold mb-2"
+      class="text-sm text-left leading-[1.125rem] -tracking-[0.1px] opacity-80 text-black font-semibold mb-2"
       :for="name"
     >
       <span>{{ label }}</span
       >&thinsp;<span
         v-if="required"
-        style="color: #da1414"
-        class="text-left text-DA1414 font-semibold opacity-80 text-xs leading-5"
+        class="red text-left font-semibold opacity-80 text-xs leading-5"
         >*</span
       >
     </label>
 
     <div
-      class="bg-white baseinput-core w-full rounded-lg py-3 px-4 flex flex-shrink flex-nowrap items-center space-x-2 border border-[#858C94] h-[70px]"
+      class="bg-white baseinput-core rounded-lg px-4 py-[0.688rem] border border-[#858C94] h-[40px]"
       :class="{ error: hasError, success: hasSuccess }"
     >
-      <span v-if="$slots.icon" class="inline-flex flex-shrink-0">
-        <slot name="icon" />
-      </span>
-
       <!-- type number input -->
       <input
-        v-if="type === BaseInputType.NUMBER"
         :id="name"
         :placeholder="placeholder"
-        class="border-0 outline-none appearance-none flex-shrink w-full bg-transparent"
-        :type="type"
-        :autocomplete="shouldBeAutoCompleted(type)"
+        class="border-0 outline-none appearance-none flex-shrink w-full h-full bg-transparent text-black text-montSerrat opacity-80"
+        type="number"
+        autocomplete="false"
         spellcheck="false"
         :name="name"
         :value="modelValue"
@@ -41,32 +32,18 @@
         :step="step"
         @input="emitUpdateEvent($event)"
       />
-
-      <!-- everything except type number input -->
-      <input
-        v-else
-        :id="name"
-        :placeholder="placeholder"
-        class="border-0 outline-none appearance-none flex-shrink w-full bg-transparent"
-        :type="viewPassword ? 'text' : type"
-        :name="name"
-        :value="modelValue"
-        :autocomplete="shouldBeAutoCompleted(type)"
-        spellcheck="false"
-        @input="emitUpdateEvent($event)"
-      />
     </div>
 
     <!-- error message -->
     <div
       v-if="hasError"
-      class="rounded-lg w-full bg-danger-light flex flex-row space-x-1 py-1.5 px-2 mt-2 items-center select-none"
+      class="rounded-lg w-full flex flex-row space-x-1 py-1.5 px-2 mt-2 items-center select-none"
     >
       <span class="inline-flex flex-shrink-0">
         <RedInfoIcon />
       </span>
       <span class="text-xs text-danger font-medium">{{
-        errorMessage || "Email non trouvé"
+        errorMessage || "Required field"
       }}</span>
     </div>
 
@@ -107,7 +84,6 @@ interface Props {
   successMessage?: string;
   errorMessage?: string;
   placeholder?: string;
-  type?: BaseInputType;
   name: string;
   required?: boolean;
   min?: number;
@@ -122,7 +98,6 @@ const props = withDefaults(defineProps<Props>(), {
   successMessage: "",
   errorMessage: "",
   placeholder: "",
-  type: BaseInputType.TEXT,
   required: false,
 });
 
@@ -147,16 +122,7 @@ function validateInput(value: string) {
 
   if (result !== true) return result;
 
-  if (props.type === BaseInputType.NUMBER)
-    result = applyMinMaxValidationForNumber(value, props.min, props.max);
-
-  if (props.type === BaseInputType.TEXT)
-    result = applyMinMaxValidationForString(value, props.min, props.max);
-
-  // if ([BaseInputType.DATE, BaseInputType.DATETIME].includes(props.type))
-  //   result = applyMinMaxValidationForDate(value);
-
-  return result;
+  return applyMinMaxValidationForNumber(value, props.min, props.max);
 }
 
 const viewPassword = ref(false);
@@ -165,73 +131,56 @@ function emitUpdateEvent(event: Event) {
   emit("update:modelValue", (event.target as any).value);
   emit("change", (event.target as any).value);
 }
-
-function shouldBeAutoCompleted(type: string) {
-  let complete = "";
-  switch (type) {
-    case "password":
-      complete = "new-password";
-      break;
-    case "text":
-      complete = "on";
-      break;
-    default:
-      complete = "off";
-      break;
-  }
-  return complete;
-}
 </script>
 
 <style scoped lang="scss">
-// v::deep .cinput {
-// }
+.BaseInputComponent {
+  ::placeholder {
+    font-weight: 600;
+    color: #6d7580;
+    @apply text-sm;
+  }
 
-::placeholder {
-  font-weight: 600;
-  color: #6d7580;
-  @apply text-sm;
-}
+  .error {
+    background: #feefef;
+    border: 1px solid #da1414;
+  }
 
-.error {
-  background: #feefef;
-  border: 1px solid #da1414;
-}
+  .success {
+    background: #edf9f0;
+    border: 1px solid #287d3c;
+  }
 
-.success {
-  background: #edf9f0;
-  border: 1px solid #287d3c;
-}
+  .error input {
+    -webkit-box-shadow: 0 0 0px 1000px #feefef inset !important;
+  }
 
-.error input {
-  -webkit-box-shadow: 0 0 0px 1000px #feefef inset !important;
-}
+  .success input {
+    -webkit-box-shadow: 0 0 0px 1000px #edf9f0 inset !important;
+  }
 
-.success input {
-  -webkit-box-shadow: 0 0 0px 1000px #edf9f0 inset !important;
-}
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+  }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  transition: background-color 5000s ease-in-out 0s;
-}
+  input::-ms-reveal,
+  input::-ms-clear {
+    display: none;
+  }
 
-input::-ms-reveal,
-input::-ms-clear {
-  display: none;
-}
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 }
 </style>

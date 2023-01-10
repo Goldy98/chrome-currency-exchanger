@@ -2,7 +2,7 @@
   <div
     ref="select_slotted"
     data-widget-item="select-slotted"
-    class="select-none relative"
+    class="select-none relative BaseSelectComponent"
   >
     <!--label-->
     <span
@@ -20,7 +20,7 @@
     <!--select button-->
     <div
       ref="select_slotted_button"
-      class="w-full h-[70px] rounded-lg border border-borderColor px-4 py-[0.688rem] min-w-[15.625rem] bg-white flex items-center justify-between cursor-pointer select_slotted_button border-[#858C94]"
+      class="h-[50px] rounded-lg border px-4 py-[0.688rem] bg-white flex items-center justify-between cursor-pointer border-[#858C94]"
       :class="{ error: hasError }"
       @click="toggle"
     >
@@ -92,7 +92,7 @@
         showDefaultSelector
       "
       ref="select_slotted_options"
-      class="select_slotted_options w-full rounded border border-white bg-white absolute mt-[0.281rem] z-[1] custom-scrll"
+      class="select_slotted_options w-full rounded border border-white bg-white absolute mt-[0.281rem] z-[999999]"
       data-widget-item="select_slotted_group"
     >
       <template v-if="hasSlot">
@@ -103,7 +103,7 @@
           <div
             v-for="(choice, index) in state.dataToUse"
             :key="index"
-            class="item w-full py-2 px-4 cursor-pointer text-left hover:bg-hoverColor"
+            class="item w-full py-2 px-4 cursor-pointer text-left hover:bg-hoverColor select-item"
             @click.prevent.stop="choose(choice)"
           >
             <span class="font-semibold text-xs text-394452">
@@ -305,11 +305,19 @@ div [data-widget-item="select_slotted_group"] {
   max-height: 150px;
   border: solid 1px rgba(0, 0, 0, 0.15);
   border-radius: 0.5rem;
-  overflow: auto;
+  overflow-y: auto;
+  position: absolute !important;
+  z-index: 9999999;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .error {
   background: #feefef;
   border: 1px solid #da1414;
+}
+
+.select-item:hover {
+  background-color: #eef2f8;
 }
 </style>

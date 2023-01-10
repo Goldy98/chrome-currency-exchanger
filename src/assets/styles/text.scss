@@ -1,0 +1,74 @@
+/* Text */
+
+.text-center {
+  text-align: center;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.text-3xl {
+  font-size: 1.875rem /* 30px */;
+  line-height: 2.25rem /* 36px */;
+}
+
+.text-sm {
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.leading-\[1\.125rem\] {
+  line-height: 1.125rem /* 18px */;
+}
+
+.-tracking-\[0\.1px\] {
+  letter-spacing: -0.1px;
+}
+
+.text-black {
+  color: rgb(0 0 0);
+}
+
+.text-xs {
+  font-size: 0.75rem /* 12px */;
+  line-height: 1rem /* 16px */;
+}
+
+.leading-5 {
+  line-height: 1.25rem /* 20px */;
+}
+
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.appearance-none {
+  appearance: none;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.text-3xl {
+  font-size: 1.875rem /* 30px */;
+  line-height: 2.25rem /* 36px */;
+}
+
+.text-montSerrat {
+  font-family: "Montserrat", sans-serif;
+}

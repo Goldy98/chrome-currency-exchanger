@@ -1,0 +1,375 @@
+body {
+  margin: 0;
+}
+
+.currencyFormApp {
+  font-family: "Montserrat", sans-serif;
+  /* Utility */ /* Text */ /* Margin (copied from tailwind) */ /* Sizing */
+  /* Colors */
+}
+.currencyFormApp blockquote,
+.currencyFormApp dl,
+.currencyFormApp dd,
+.currencyFormApp h1,
+.currencyFormApp h2,
+.currencyFormApp h3,
+.currencyFormApp h4,
+.currencyFormApp h5,
+.currencyFormApp h6,
+.currencyFormApp hr,
+.currencyFormApp figure,
+.currencyFormApp p,
+.currencyFormApp pre {
+  margin: 0;
+}
+.currencyFormApp h1,
+.currencyFormApp h2,
+.currencyFormApp h3,
+.currencyFormApp h4,
+.currencyFormApp h5,
+.currencyFormApp h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+.currencyFormApp button {
+  outline: none;
+  border: 0px;
+}
+.currencyFormApp body {
+  margin: 0;
+}
+.currencyFormApp .flex {
+  display: flex;
+}
+.currencyFormApp .flex-row {
+  flex-direction: row;
+}
+.currencyFormApp .flex-col {
+  flex-direction: column;
+}
+.currencyFormApp .flex-shrink {
+  flex-shrink: 1;
+}
+.currencyFormApp .flex-wrap {
+  flex-wrap: wrap;
+}
+.currencyFormApp .flex-nowrap {
+  flex-wrap: nowrap;
+}
+.currencyFormApp .inline-flex {
+  display: inline-flex;
+}
+.currencyFormApp .flex-shrink-0 {
+  flex-shrink: 0;
+}
+.currencyFormApp .items-center {
+  align-items: center;
+}
+.currencyFormApp .justify-center {
+  justify-content: center;
+}
+.currencyFormApp .cursor-pointer {
+  cursor: pointer;
+}
+.currencyFormApp .items-baseline {
+  align-items: baseline;
+}
+.currencyFormApp .relative {
+  position: relative;
+}
+.currencyFormApp .opacity-80 {
+  opacity: 0.8;
+}
+.currencyFormApp .z-\[1\] {
+  z-index: 1;
+}
+.currencyFormApp .z-\[999999\] {
+  z-index: 999999px;
+}
+.currencyFormApp .align-middle {
+  vertical-align: middle;
+}
+.currencyFormApp .absolute {
+  position: absolute;
+}
+.currencyFormApp .rounded-full {
+  border-radius: 9999px;
+}
+.currencyFormApp .rounded-xl {
+  border-radius: 0.75rem;
+}
+.currencyFormApp .text-center {
+  text-align: center;
+}
+.currencyFormApp .font-bold {
+  font-weight: 700;
+}
+.currencyFormApp .font-semibold {
+  font-weight: 600;
+}
+.currencyFormApp .text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.currencyFormApp .text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.currencyFormApp .text-left {
+  text-align: left;
+}
+.currencyFormApp .leading-\[1\.125rem\] {
+  line-height: 1.125rem;
+}
+.currencyFormApp .-tracking-\[0\.1px\] {
+  letter-spacing: -0.1px;
+}
+.currencyFormApp .text-black {
+  color: rgb(0, 0, 0);
+}
+.currencyFormApp .text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.currencyFormApp .leading-5 {
+  line-height: 1.25rem;
+}
+.currencyFormApp .outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.currencyFormApp .appearance-none {
+  appearance: none;
+}
+.currencyFormApp .font-medium {
+  font-weight: 500;
+}
+.currencyFormApp .text-ellipsis {
+  text-overflow: ellipsis;
+}
+.currencyFormApp .text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.currencyFormApp .text-montSerrat {
+  font-family: "Montserrat", sans-serif;
+}
+.currencyFormApp .mt-9 {
+  margin-top: 2.25rem;
+}
+.currencyFormApp .mt-2 {
+  margin-top: 0.5rem;
+}
+.currencyFormApp .mr-2 {
+  margin-right: 0.5rem;
+}
+.currencyFormApp .mt-10 {
+  margin-top: 2.5rem;
+}
+.currencyFormApp .mb-5 {
+  margin-bottom: 1.25rem;
+}
+.currencyFormApp .mr-1 {
+  margin-right: 0.25rem;
+}
+.currencyFormApp .mb-1 {
+  margin-bottom: 0.25rem;
+}
+.currencyFormApp .mr-\[10px\] {
+  margin-right: 10px;
+}
+.currencyFormApp .mt-\[0\.281rem\] {
+  margin-top: 0.281rem;
+}
+.currencyFormApp .mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+.currencyFormApp .mt-5 {
+  margin-top: 1.25rem;
+}
+.currencyFormApp .mb-2 {
+  margin-bottom: 0.5rem;
+}
+.currencyFormApp .mt-10 {
+  margin-top: 2.5rem;
+}
+.currencyFormApp .px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+.currencyFormApp .pt-5 {
+  padding-top: 1.25rem;
+}
+.currencyFormApp .p-5 {
+  padding: 1.25rem;
+}
+.currencyFormApp .p-2 {
+  padding: 0.5rem;
+}
+.currencyFormApp .pb-4 {
+  padding-bottom: 1rem;
+}
+.currencyFormApp .py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.currencyFormApp .py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.currencyFormApp .px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.currencyFormApp .py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+.currencyFormApp .py-\[0\.688rem\] {
+  padding-top: 0.688rem;
+  padding-bottom: 0.688rem;
+}
+.currencyFormApp .select-none {
+  user-select: none;
+}
+.currencyFormApp .p-\[6px\] {
+  padding: 6px;
+}
+.currencyFormApp .py-\[7px\] {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+.currencyFormApp .px-\[10px\] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.currencyFormApp .w-\[20px\] {
+  width: 20px;
+}
+.currencyFormApp .w-full {
+  width: 100%;
+}
+.currencyFormApp .w-\[90\%\] {
+  width: 90%;
+}
+.currencyFormApp .w-10 {
+  width: 2.5rem;
+}
+.currencyFormApp .h-\[55px\] {
+  height: 55px;
+}
+.currencyFormApp .h-20 {
+  height: 5rem;
+}
+.currencyFormApp .h-10 {
+  height: 2.5rem;
+}
+.currencyFormApp .h-\[70px\] {
+  height: 70px;
+}
+.currencyFormApp .h-\[40px\] {
+  height: 40px;
+}
+.currencyFormApp .h-full {
+  height: 100%;
+}
+.currencyFormApp .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * (1 - var(--tw-space-x-reverse)));
+}
+.currencyFormApp .space-x-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.25rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.25rem * (1 - var(--tw-space-x-reverse)));
+}
+.currencyFormApp .min-w-\[15\.625rem\] {
+  min-width: 15.625rem;
+}
+.currencyFormApp .mr-\[12px\] {
+  margin-right: 12px;
+}
+.currencyFormApp .mt-\[3px\] {
+  margin-top: 3px;
+}
+.currencyFormApp .ml-2 {
+  margin-left: 0.5rem;
+}
+.currencyFormApp .bg-primary {
+  background-color: rgb(10, 55, 100);
+}
+.currencyFormApp .text-white {
+  color: rgb(255, 255, 255);
+}
+.currencyFormApp .red {
+  color: #da1414;
+}
+.currencyFormApp .text-DA1414 {
+  color: #da1414;
+}
+.currencyFormApp .bg-white {
+  background-color: rgb(255, 255, 255);
+}
+.currencyFormApp .text-primary {
+  --tw-text-opacity: 1;
+  color: rgb(10 55 100/var(--tw-text-opacity));
+}
+.currencyFormApp .text-394452 {
+  color: #394452;
+}
+.currencyFormApp .rounded-lg {
+  border-radius: 0.5rem;
+}
+.currencyFormApp .rounded-md {
+  border-radius: 0.375rem;
+}
+.currencyFormApp .border {
+  border-style: solid;
+  border-width: 1px;
+}
+.currencyFormApp .border-0 {
+  border-width: 0px;
+}
+.currencyFormApp .border-\[\#858C94\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(133 140 148/var(--tw-border-opacity));
+}
+.currencyFormApp .bg-transparent {
+  background-color: transparent;
+}
+.currencyFormApp .overflow-hidden {
+  overflow: hidden;
+}
+.currencyFormApp .bg-\[\#DADEE3\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(218 222 227/var(--tw-bg-opacity));
+}
+.currencyFormApp .bg-secondary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(81 170 28/var(--tw-bg-opacity));
+}
+.currencyFormApp .bg-disabledButton {
+  background-color: #7d8b94;
+}
+.currencyFormApp .bg-secondary {
+  background-color: #51aa1c;
+}
+.currencyFormApp .bg-lightRed {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 157 157/var(--tw-bg-opacity));
+}
+.currencyFormApp .bg-lightGreen {
+  --tw-bg-opacity: 1;
+  background-color: rgb(214 239 220/var(--tw-bg-opacity));
+}
+.currencyFormApp .text-deepBlue {
+  --tw-text-opacity: 1;
+  color: rgb(41 70 92/var(--tw-text-opacity));
+}
+.currencyFormApp .text-secondaryBlack {
+  --tw-text-opacity: 1;
+  color: rgb(48 51 49/var(--tw-text-opacity));
+}
+
+/*# sourceMappingURL=base.css.map */

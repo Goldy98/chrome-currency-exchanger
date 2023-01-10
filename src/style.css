@@ -14,15 +14,12 @@
   -webkit-text-size-adjust: 100%;
 } */
 
-@import "currency-flags/dist/currency-flags.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 #app {
-  width: 350px;
-}
-
-@media (prefers-color-scheme: light) {
+  width: 400px;
 }

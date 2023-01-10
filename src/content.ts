@@ -1,3 +1,11 @@
+import { App } from "vue";
+import { getWindowSelectionIfNumber } from "./helpers";
+import {
+  loadComponentStyleIntoDom,
+  appendConverterPopUpForm,
+  buildIconButton,
+} from "./window-ui";
+
 type SupportedEvent = "SelectedNumber";
 
 export type ActivePageEvent = {
@@ -5,43 +13,65 @@ export type ActivePageEvent = {
   payload: any;
 };
 
-document.addEventListener("mouseup", () => {
-  console.log("======= load EXECUTED FROM MY EXTENSION SCRIPT");
-  const selectedText = window.getSelection()?.toString();
+loadComponentStyleIntoDom();
 
-  const numberValue = getNumberValue(
-    selectedText?.replaceAll(",", ".").replaceAll(" ", "")
-  );
+const convertButton = buildIconButton("launchCurrencyConverterButton");
+const cancelButton = buildIconButton("closeCurrencyConverterButton");
 
-  if (selectedText && numberValue) {
+let buttonIsDisplayed = false;
+let currentConverterForm: App | null;
+
+document.addEventListener("mouseup", (event) => {
+  if (buttonIsDisplayed) return;
+  const windowSelectionAsNumber = getWindowSelectionIfNumber();
+
+  if (windowSelectionAsNumber) {
+    convertButton.style.top = event.clientY - 20 + "px";
+    convertButton.style.left = event.clientX + 5 + "px";
+    convertButton.style.display = "block";
+    buttonIsDisplayed = true;
+
     // Send the selected text to the extension
     chrome.runtime.sendMessage<ActivePageEvent>({
       name: "SelectedNumber",
-      payload: numberValue,
+      payload: windowSelectionAsNumber,
     });
+  } else {
+    convertButton.style.display = "none";
+    buttonIsDisplayed = false;
   }
 });
 
-document.addEventListener("load", () => {
-  console.log("======= load EXECUTED FROM MY EXTENSION SCRIPT");
-  chrome.runtime.sendMessage("SAY HELLO FROM ACTUAL PAGE");
+document.body.appendChild(convertButton);
+document.body.appendChild(cancelButton);
+
+cancelButton.addEventListener("click", (_) => {
+  if (currentConverterForm) {
+    currentConverterForm.unmount();
+    currentConverterForm = null;
+    cancelButton.style.display = "none";
+  }
 });
 
-// const dom = document.createElement("h1");
+convertButton.addEventListener("click", (event) => {
+  const windowSelectionAsNumber = getWindowSelectionIfNumber();
 
-// dom.textContent = "NIQUE TA MERE";
+  if (windowSelectionAsNumber) {
+    currentConverterForm = appendConverterPopUpForm(
+      event.clientX + "px",
+      event.clientY + "px",
+      windowSelectionAsNumber
+    ).app;
 
-// document.body.insertAdjacentElement("afterbegin", dom);
+    cancelButton.style.top = event.clientY - 20 + "px";
+    cancelButton.style.left = event.clientX + 317 + "px";
+    cancelButton.style.display = "block";
 
-// const canvas = document.createElement("canvas");
-
-function getNumberValue(value: string = "") {
-  try {
-    const numberValue = parseFloat(value);
-    return numberValue;
-  } catch (error) {
-    return undefined;
+    buttonIsDisplayed = true;
   }
-}
+
+  convertButton.style.display = "none";
+  buttonIsDisplayed = false;
+});
 
 export {};
