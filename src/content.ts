@@ -22,7 +22,7 @@ let buttonIsDisplayed = false;
 let currentConverterForm: App | null;
 
 document.addEventListener("mouseup", (event) => {
-  if (buttonIsDisplayed) return;
+  if (buttonIsDisplayed || currentConverterForm) return;
   const windowSelectionAsNumber = getWindowSelectionIfNumber();
 
   if (windowSelectionAsNumber) {

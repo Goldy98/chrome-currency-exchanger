@@ -8,6 +8,10 @@
   font-weight: 700;
 }
 
+.font-black {
+  font-weight: 900;
+}
+
 .font-semibold {
   font-weight: 600;
 }
@@ -20,6 +24,11 @@
 .text-sm {
   font-size: 0.875rem /* 14px */;
   line-height: 1.25rem /* 20px */;
+}
+
+.text-xs {
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
 }
 
 .text-left {

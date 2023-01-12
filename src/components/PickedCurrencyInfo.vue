@@ -4,7 +4,7 @@
       class="currency-flag rounded-full w-10 h-10 mr-2"
       :style="`background-image: url(${computedCurrencyFlagUrl})`"
     ></div>
-    <span class="text-black">
+    <span class="opacity-80 text-black text-xs">
       {{ pickedCurrency.label }}
     </span>
   </div>

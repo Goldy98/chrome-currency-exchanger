@@ -21,7 +21,7 @@
       <input
         :id="name"
         :placeholder="placeholder"
-        class="border-0 outline-none appearance-none flex-shrink w-full h-full bg-transparent text-black text-montSerrat opacity-80"
+        class="border-0 outline-none appearance-none flex-shrink w-full h-full bg-transparent text-black text-montSerrat opacity-80 font-black"
         type="number"
         autocomplete="false"
         spellcheck="false"

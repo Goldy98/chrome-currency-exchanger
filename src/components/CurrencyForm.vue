@@ -92,8 +92,8 @@ type Props = {
 
 const props = defineProps<Props>();
 
-// const sortingArrowUrl = chrome.runtime.getURL(SortingArrow);
-const sortingArrowUrl = SortingArrow;
+const sortingArrowUrl = chrome.runtime.getURL(SortingArrow);
+// const sortingArrowUrl = SortingArrow;
 
 const state = reactive<State>({
   fromCurrency: null,
@@ -137,6 +137,9 @@ function invertCurrency() {
 
 onMounted(() => {
   console.log("============== ALLLLLL");
-  console.log("chrome.runtime.getURL(SortingArrow):");
+  console.log(
+    "chrome.runtime.getURL(SortingArrow):",
+    chrome.runtime.getURL(SortingArrow)
+  );
 });
 </script>
