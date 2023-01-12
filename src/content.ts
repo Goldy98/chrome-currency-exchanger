@@ -18,6 +18,9 @@ loadComponentStyleIntoDom();
 const convertButton = buildIconButton("launchCurrencyConverterButton");
 const cancelButton = buildIconButton("closeCurrencyConverterButton");
 
+document.body.appendChild(convertButton);
+document.body.appendChild(cancelButton);
+
 let buttonIsDisplayed = false;
 let currentConverterForm: App | null;
 
@@ -26,8 +29,8 @@ document.addEventListener("mouseup", (event) => {
   const windowSelectionAsNumber = getWindowSelectionIfNumber();
 
   if (windowSelectionAsNumber) {
-    convertButton.style.top = event.clientY - 20 + "px";
-    convertButton.style.left = event.clientX + 5 + "px";
+    convertButton.style.top = event.pageY + "px";
+    convertButton.style.left = event.pageX + "px";
     convertButton.style.display = "block";
     buttonIsDisplayed = true;
 
@@ -42,14 +45,21 @@ document.addEventListener("mouseup", (event) => {
   }
 });
 
-document.body.appendChild(convertButton);
-document.body.appendChild(cancelButton);
+document.addEventListener("selectionchange", (_) => {
+  // When the user click on the page while having a texte selected
+  if (!window.getSelection()?.toString() && buttonIsDisplayed) {
+    convertButton.style.display = "none";
+    buttonIsDisplayed = false;
+    window.getSelection()?.empty();
+  }
+});
 
 cancelButton.addEventListener("click", (_) => {
   if (currentConverterForm) {
     currentConverterForm.unmount();
     currentConverterForm = null;
     cancelButton.style.display = "none";
+    window.getSelection()?.empty();
   }
 });
 
@@ -58,13 +68,13 @@ convertButton.addEventListener("click", (event) => {
 
   if (windowSelectionAsNumber) {
     currentConverterForm = appendConverterPopUpForm(
-      event.clientX + "px",
-      event.clientY + "px",
+      event.pageX + "px",
+      event.pageY + "px",
       windowSelectionAsNumber
     ).app;
 
-    cancelButton.style.top = event.clientY - 20 + "px";
-    cancelButton.style.left = event.clientX + 317 + "px";
+    cancelButton.style.top = event.pageY - 20 + "px";
+    cancelButton.style.left = event.pageX + 317 + "px";
     cancelButton.style.display = "block";
 
     buttonIsDisplayed = true;
@@ -73,5 +83,3 @@ convertButton.addEventListener("click", (event) => {
   convertButton.style.display = "none";
   buttonIsDisplayed = false;
 });
-
-export {};
