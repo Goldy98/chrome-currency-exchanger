@@ -1,11 +1,11 @@
 <template>
   <div>
     <BaseInput
+      v-model="state.amount"
       :min="1"
       name="amount"
       :type="BaseInputType.NUMBER"
       label="Amount"
-      v-model="state.amount"
       required
     />
 
@@ -14,13 +14,13 @@
       name="from"
       label="From"
       :data="currencyDataForSelect"
-      @change="(choice) => (state.fromCurrency = choice)"
       required
+      @change="(choice) => (state.fromCurrency = choice)"
     >
       <template #choosenItem>
         <PickedCurrencyInfo
-          :picked-currency="state.fromCurrency"
           v-if="state.fromCurrency"
+          :picked-currency="state.fromCurrency"
         />
       </template>
     </BaseSelect>
@@ -39,14 +39,14 @@
       name="to"
       label="To"
       :data="currencyDataForSelect"
-      @change="(choice) => (state.toCurrency = choice)"
       required
       class="h-20"
+      @change="(choice) => (state.toCurrency = choice)"
     >
       <template #choosenItem>
         <PickedCurrencyInfo
-          :picked-currency="state.toCurrency"
           v-if="state.toCurrency"
+          :picked-currency="state.toCurrency"
         />
       </template>
     </BaseSelect>
@@ -56,26 +56,26 @@
         label="Convert"
         :disabled="!state.canSubmit || isConverting"
         :loading="isConverting"
-        @click="submitAttempt"
         class="h-[55px]"
+        @click="submitAttempt"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import BaseInputType from "@/constants/input-type";
+import { computed, ComputedRef, reactive, watch } from "vue";
+import { ConversionRequestPayload } from "@/api";
+import SortingArrow from "@/assets/sorting-arrows.png";
+import BaseInputType from "@/constants/types";
 import {
   currencyDataForSelect,
   CurrencyKey,
 } from "@/constants/supported-currency";
-import { computed, reactive, ComputedRef, watch, onMounted } from "vue";
 import BaseInput from "./forms/BaseInput.vue";
 import BaseSelect, { BaseSelectData } from "./forms/BaseSelect.vue";
 import PickedCurrencyInfo from "./PickedCurrencyInfo.vue";
 import VButton from "./VButton.vue";
-import { ConversionRequestPayload } from "@/api";
-import SortingArrow from "@/assets/sorting-arrows.png";
 
 type State = {
   fromCurrency: null | BaseSelectData;
@@ -134,12 +134,4 @@ function invertCurrency() {
   state.fromCurrency = state.toCurrency;
   state.toCurrency = tmpFromCurrency;
 }
-
-onMounted(() => {
-  console.log("============== ALLLLLL");
-  console.log(
-    "chrome.runtime.getURL(SortingArrow):",
-    chrome.runtime.getURL(SortingArrow)
-  );
-});
 </script>

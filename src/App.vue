@@ -12,15 +12,15 @@
     <div class="p-5">
       <div class="w-full mt-2">
         <CurrencyForm
-          @submit="onConversionRequest"
           :is-converting="state.isConverting"
           :pre-set-amount="state.selectedNumberFromActivePage"
           :app-is-embedded="isEmbedded"
+          @submit="onConversionRequest"
         />
       </div>
 
       <Transition name="fade">
-        <div class="mt-5" v-if="state.sentPayload && state.successResult">
+        <div v-if="state.sentPayload && state.successResult" class="mt-5">
           <Result
             :payload="state.sentPayload"
             :request-result="state.successResult"
@@ -34,7 +34,7 @@
       </div> -->
       </Transition>
 
-      <div class="mt-2" v-if="state.errorOccured">
+      <div v-if="state.errorOccured" class="mt-2">
         <ConversionError />
       </div>
     </div>
@@ -47,7 +47,7 @@ import { ApiClient, ConversionRequestPayload, ConversionResult } from "./api";
 import ConversionError from "./components/ConversionError.vue";
 import CurrencyForm from "./components/CurrencyForm.vue";
 import Result from "./components/Result.vue";
-import { ActivePageEvent } from "./content";
+import { ActivePageEvent } from "@/constants/types";
 
 type State = {
   isConverting: boolean;
@@ -72,10 +72,8 @@ const props = withDefaults(
   }
 );
 
-const apiClient = new ApiClient();
-
 // Used only for test purpose
-async function fakeConversion(payload: ConversionRequestPayload) {
+/* async function fakeConversion(payload: ConversionRequestPayload) {
   state.sentPayload = payload;
   state.isConverting = true;
 
@@ -93,12 +91,12 @@ async function fakeConversion(payload: ConversionRequestPayload) {
   state.errorOccured = true;
 
   state.isConverting = false;
-}
+} */
 
 async function onConversionRequest(payload: ConversionRequestPayload) {
   state.sentPayload = payload;
   state.isConverting = true;
-  const rawResult = await apiClient.convert(payload);
+  const rawResult = await ApiClient.convert(payload);
 
   if (rawResult.success) {
     state.successResult = rawResult.data;
@@ -114,15 +112,10 @@ onMounted(() => {
    * Setup a handler for the event emitted when the user
    * select a number from the current page while the extension popup
    * is displayed
-   **/
+   * */
   chrome.runtime.onMessage.addListener((event: ActivePageEvent) => {
     if (event.name === "SelectedNumber") {
-      console.log("*******", event.payload, typeof event.payload);
       state.selectedNumberFromActivePage = +event.payload;
-      console.log(
-        "state.selectedNumberFromActivePage:",
-        state.selectedNumberFromActivePage
-      );
     }
   });
 

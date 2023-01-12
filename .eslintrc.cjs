@@ -2,7 +2,9 @@
 require("@rushstack/eslint-patch/modern-module-resolution");
 
 module.exports = {
-  root: true,
+  env: {
+    webextensions: true,
+  },
   plugins: ["@typescript-eslint", "promise"],
   extends: [
     "airbnb-base",
@@ -17,8 +19,8 @@ module.exports = {
   ],
   ignorePatterns: ["vite.config.ts"],
   parserOptions: {
-    ecmaVersion: "latest",
-    project: ["./tsconfig.json"],
+    project: ["tsconfig.json"],
+    sourceType: "module",
   },
   rules: {
     "func-names": "error",
@@ -33,6 +35,14 @@ module.exports = {
     "no-plusplus": "off",
     "prefer-destructuring": "off",
     "no-restricted-syntax": "off",
+    "no-use-before-define": [
+      "error",
+      {
+        functions: false,
+        classes: true,
+        variables: true,
+      },
+    ],
     "no-magic-numbers": ["error", { ignoreArrayIndexes: true, ignore: [0, 1] }],
   },
 };

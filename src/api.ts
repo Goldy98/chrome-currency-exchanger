@@ -60,7 +60,7 @@ type ApiRawConvertResult = {
 // }
 
 export class ApiClient {
-  async convert(
+  static async convert(
     payload: ConversionRequestPayload
   ): Promise<ApiCallResult<ConversionResult>> {
     try {
@@ -83,7 +83,7 @@ export class ApiClient {
     }
   }
 
-  #buildUrl(payload: ConversionRequestPayload) {
+  static #buildUrl(payload: ConversionRequestPayload) {
     const { from, to, amount } = payload;
     return `${API_BASE_URL}/convert?from=${from}&to=${to}&amount=${amount}`;
   }

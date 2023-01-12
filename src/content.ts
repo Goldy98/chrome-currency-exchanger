@@ -1,17 +1,11 @@
 import { App } from "vue";
+import { ActivePageEvent } from "./constants/types";
 import { getWindowSelectionIfNumber } from "./helpers";
 import {
   loadComponentStyleIntoDom,
   appendConverterPopUpForm,
   buildIconButton,
 } from "./window-ui";
-
-type SupportedEvent = "SelectedNumber";
-
-export type ActivePageEvent = {
-  name: SupportedEvent;
-  payload: any;
-};
 
 loadComponentStyleIntoDom();
 
@@ -29,8 +23,8 @@ document.addEventListener("mouseup", (event) => {
   const windowSelectionAsNumber = getWindowSelectionIfNumber();
 
   if (windowSelectionAsNumber) {
-    convertButton.style.top = event.pageY + "px";
-    convertButton.style.left = event.pageX + "px";
+    convertButton.style.top = `${event.pageY}px`;
+    convertButton.style.left = `${event.pageX}px`;
     convertButton.style.display = "block";
     buttonIsDisplayed = true;
 
@@ -68,13 +62,15 @@ convertButton.addEventListener("click", (event) => {
 
   if (windowSelectionAsNumber) {
     currentConverterForm = appendConverterPopUpForm(
-      event.pageX + "px",
-      event.pageY + "px",
+      `${event.pageX}px`,
+      `${event.pageY}px`,
       windowSelectionAsNumber
     ).app;
 
-    cancelButton.style.top = event.pageY - 20 + "px";
-    cancelButton.style.left = event.pageX + 317 + "px";
+    // eslint-disable-next-line no-magic-numbers
+    cancelButton.style.top = `${event.pageY - 20}px`;
+    // eslint-disable-next-line no-magic-numbers
+    cancelButton.style.left = `${event.pageX + 317}px`;
     cancelButton.style.display = "block";
 
     buttonIsDisplayed = true;

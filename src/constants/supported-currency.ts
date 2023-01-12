@@ -179,7 +179,7 @@ export const currencyDataForSelect: BaseSelectData[] = Object.keys(
   currencyData
 ).map((key) => {
   return {
-    label: key + " " + currencyData[key as CurrencyKey],
+    label: `${key} ${currencyData[key as CurrencyKey]}`,
     value: key,
   };
 });

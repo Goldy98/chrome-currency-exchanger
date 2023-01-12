@@ -6,6 +6,15 @@ export function containElement(searchArr: any[], rowId: string, idKey = "id") {
   );
 }
 
+export function getNumberValue(value: string = "") {
+  try {
+    const numberValue = parseFloat(value);
+    return numberValue;
+  } catch (error) {
+    return undefined;
+  }
+}
+
 export function getWindowSelectionIfNumber() {
   const selectedText = window.getSelection()?.toString();
 
@@ -16,13 +25,4 @@ export function getWindowSelectionIfNumber() {
   if (selectedText && numberValue) return numberValue;
 
   return undefined;
-}
-
-export function getNumberValue(value: string = "") {
-  try {
-    const numberValue = parseFloat(value);
-    return numberValue;
-  } catch (error) {
-    return undefined;
-  }
 }

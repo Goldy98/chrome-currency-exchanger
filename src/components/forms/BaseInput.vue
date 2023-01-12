@@ -67,10 +67,8 @@
 
 <script setup lang="ts">
 import { computed, withDefaults, ref } from "vue";
-import BaseInputType from "@/constants/input-type";
 import {
   applyMinMaxValidationForNumber,
-  applyMinMaxValidationForString,
   applyRequiredValidation,
 } from "./validation-helper";
 import GreenInfoIcon from "../icons/GreenInfoIcon.vue";
@@ -102,6 +100,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const errorMessage = computed((): string => {
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   const checkResult = validateInput(props.modelValue as string);
   if (checkResult === true) return "";
   return checkResult;
@@ -125,8 +124,6 @@ function validateInput(value: string) {
   return applyMinMaxValidationForNumber(value, props.min, props.max);
 }
 
-const viewPassword = ref(false);
-
 function emitUpdateEvent(event: Event) {
   emit("update:modelValue", (event.target as any).value);
   emit("change", (event.target as any).value);
@@ -138,7 +135,6 @@ function emitUpdateEvent(event: Event) {
   ::placeholder {
     font-weight: 600;
     color: #6d7580;
-    @apply text-sm;
   }
 
   .error {

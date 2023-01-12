@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="flex flex-col text-center bg-lightGreen p-2 rounded-xl">
     <span class="text-black">Results</span>
@@ -9,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import { ConversionRequestPayload, ConversionResult } from "@/api";
 import { computed } from "vue";
+import { ConversionRequestPayload, ConversionResult } from "@/api";
 
 const props = defineProps<{
   payload: ConversionRequestPayload;

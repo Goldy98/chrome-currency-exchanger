@@ -25,9 +25,9 @@
       @click="toggle"
     >
       <div
-        class="inline-flex items-center flex-row space-x-1 flex-shrink-0 text-ellipsis overflow-hidden"
+        class="inline-flex items-center flex-row space-x-1 flex-shrink-0 text-ellipsis overflow-hidden w-[90%] flex-wrap"
         :class="{
-          'w-[90%] flex-wrap': !searchable,
+          '': !searchable,
           'w-full': searchable,
         }"
       >
@@ -54,22 +54,6 @@
           >
             {{ state.actualSelection?.label || emptyLabel }}
           </span>
-          <slot
-            name="choosenItem"
-            v-else-if="isAvailableSlot('choosenItem')"
-          ></slot>
-          <div
-            v-for="(choice, index) in state.actualSelections"
-            v-else
-            :key="choice.value ?? index"
-            class="bg-[#DADEE3] p-[6px] text-black rounded-md font-bold flex items-center mr-1 mb-1"
-            @click="removeItem(choice.value)"
-          >
-            <span class="text-sm mr-[10px]">
-              {{ choice.label || emptyLabel }}
-            </span>
-            <MiniCloseIcon />
-          </div>
         </div>
       </div>
       <!-- custom arrow needed ? -->
@@ -133,12 +117,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, watch, ref, useSlots } from "vue";
-import { containElement } from "@/helpers";
-import { NOT_FOUND_ITEM_INDEX } from "@/constants";
-import RedInfoIcon from "../icons/RedInfoIcon.vue";
+import { computed, onMounted, reactive, useSlots, watch } from "vue";
 import DropDownIcon from "../icons/DropDownIcon.vue";
-import MiniCloseIcon from "../icons/MiniCloseIcon.vue";
+import RedInfoIcon from "../icons/RedInfoIcon.vue";
 import SearchIcon from "../icons/SearchIcon.vue";
 
 export type BaseSelectData = { value: string | null; label: string };
@@ -187,10 +168,6 @@ const EMPTY_CHOICE_VALUE: BaseSelectData = {
 
 const emits = defineEmits<Emits>();
 
-const errorMessage = computed((): string =>
-  !state.actualSelection.value ? "Please pick an element" : ""
-);
-
 const state = reactive({
   show: false,
   // dataToUse: props.data,
@@ -203,57 +180,30 @@ const state = reactive({
     );
   }),
   actualSelection: props.data[0] ?? {},
-  actualSelections: [] as BaseSelectData[],
   selectSlottedButton: null,
   selecteSlottedOptions: null,
   selectSlotted: null as null | EventTarget[],
 });
+
+const errorMessage = computed((): string =>
+  !state.actualSelection.value ? "Please pick an element" : ""
+);
 
 function toggle() {
   state.show = !state.show;
   emits("toggle", state.show);
 }
 
-function handleChoiceForMultiple(item: BaseSelectData) {
-  if (!item.value) return;
-
-  if (containElement(state.actualSelections, item.value, "value")) return;
-
-  state.actualSelections.push(item);
-}
-
-function isValidForMultiple() {
-  if (props.required) return state.actualSelections.length > 0;
-  return true;
-}
-
 function choose(item: BaseSelectData): void {
-  if (props.multiple) {
-    handleChoiceForMultiple(item);
-    emits("multiple-change", state.actualSelections);
-  } else {
-    state.actualSelection = item;
-    emits("change", item);
-    state.searchValue = item.label ?? "";
-    state.show = false;
-  }
+  state.actualSelection = item;
+  emits("change", item);
+  state.searchValue = item.label ?? "";
+  state.show = false;
 }
 
 function defaultKeySearch() {
   const found = props.data.find((d) => d.value === props.defaultKey);
   choose(found ?? props.data[0] ?? EMPTY_CHOICE_VALUE);
-}
-
-function removeItem(itemValue: string | null) {
-  const elementIndex = state.actualSelections.findIndex(
-    (el) => el.value === itemValue
-  );
-
-  if (elementIndex !== NOT_FOUND_ITEM_INDEX) {
-    state.actualSelections.splice(elementIndex, 1);
-  }
-
-  emits("multiple-change", state.actualSelections);
 }
 
 // function onSearchInput(event: Event) {

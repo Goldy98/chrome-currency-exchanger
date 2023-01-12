@@ -22,6 +22,7 @@ import CircularLoader from "./icons/CircularLoader.vue";
 
 export default defineComponent({
   name: "VButton",
+  components: { CircularLoader },
   props: {
     label: {
       type: String,
@@ -74,6 +75,5 @@ export default defineComponent({
       // onClick,
     };
   },
-  components: { CircularLoader },
 });
 </script>
