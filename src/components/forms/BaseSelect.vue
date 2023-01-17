@@ -48,12 +48,17 @@
         />
 
         <div v-else class="w-full flex flex-wrap">
+          {{ textClass }}
           <span
             v-if="!multiple && !isAvailableSlot('choosenItem')"
             :class="textClass"
           >
             {{ state.actualSelection?.label || emptyLabel }}
           </span>
+          <slot
+            v-else-if="isAvailableSlot('choosenItem')"
+            name="choosenItem"
+          ></slot>
         </div>
       </div>
       <!-- custom arrow needed ? -->

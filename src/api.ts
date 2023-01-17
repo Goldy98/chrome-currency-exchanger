@@ -40,6 +40,7 @@ type ApiRawConvertResult = {
   result: number;
 };
 
+// API Response Sample
 // {
 //   "motd": {
 //       "msg": "If you or your company use this project or like what we doing, please consider backing us so we can continue maintaining and evolving this project.",

@@ -39,8 +39,8 @@ document.addEventListener("mouseup", (event) => {
   }
 });
 
-document.addEventListener("selectionchange", (_) => {
-  // When the user click on the page while having a texte selected
+document.addEventListener("selectionchange", () => {
+  // When the user click on the page while having a text selected
   if (!window.getSelection()?.toString() && buttonIsDisplayed) {
     convertButton.style.display = "none";
     buttonIsDisplayed = false;
@@ -48,7 +48,7 @@ document.addEventListener("selectionchange", (_) => {
   }
 });
 
-cancelButton.addEventListener("click", (_) => {
+cancelButton.addEventListener("click", () => {
   if (currentConverterForm) {
     currentConverterForm.unmount();
     currentConverterForm = null;
