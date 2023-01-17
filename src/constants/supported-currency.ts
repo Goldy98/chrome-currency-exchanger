@@ -1,4 +1,4 @@
-import { BaseSelectData } from "@/components/forms/BaseSelect.vue";
+import { CurrencySelectorData } from "@/components/forms/CurrencySelector.vue";
 
 const currencyData = {
   AED: "United Arab Emirates Dirham",
@@ -175,7 +175,7 @@ const currencyData = {
 
 export type CurrencyKey = keyof typeof currencyData;
 
-export const currencyDataForSelect: BaseSelectData[] = Object.keys(
+export const currencyDataForSelect: CurrencySelectorData[] = Object.keys(
   currencyData
 ).map((key) => {
   return {

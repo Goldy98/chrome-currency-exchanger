@@ -14,15 +14,23 @@
     </label>
 
     <div
-      class="bg-white baseinput-core rounded-lg px-4 py-[0.688rem] border border-[#858C94] h-[40px]"
-      :class="{ error: hasError, success: hasSuccess }"
+      class="bg-white baseinput-core rounded-lg px-4 py-[0.688rem] border border-[#858C94] flex"
+      :class="[
+        hasError ? 'error' : '',
+        hasSuccess ? 'success' : '',
+        dynamicHeigthClass,
+      ]"
     >
+      <span v-if="$slots.icon" class="inline-flex flex-shrink-0">
+        <slot name="icon" />
+      </span>
+
       <!-- type number input -->
       <input
         :id="name"
         :placeholder="placeholder"
         class="border-0 outline-none appearance-none flex-shrink w-full h-full bg-transparent text-black text-montSerrat opacity-80 font-black"
-        type="number"
+        :type="type"
         autocomplete="false"
         spellcheck="false"
         :name="name"
@@ -66,13 +74,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, withDefaults, ref } from "vue";
+import { computed, withDefaults, ref, watch } from "vue";
 import {
   applyMinMaxValidationForNumber,
   applyRequiredValidation,
 } from "./validation-helper";
 import GreenInfoIcon from "../icons/GreenInfoIcon.vue";
 import RedInfoIcon from "../icons/RedInfoIcon.vue";
+import BaseInputType from "@/constants/types";
 
 interface Props {
   cinput?: string;
@@ -87,6 +96,8 @@ interface Props {
   min?: number;
   max?: number;
   step?: number;
+  heightClass?: string;
+  type?: BaseInputType;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -97,18 +108,42 @@ const props = withDefaults(defineProps<Props>(), {
   errorMessage: "",
   placeholder: "",
   required: false,
+  heightClass: "h-10",
+  type: BaseInputType.NUMBER,
 });
 
-const errorMessage = computed((): string => {
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
-  const checkResult = validateInput(props.modelValue as string);
-  if (checkResult === true) return "";
-  return checkResult;
+// const errorMessage = computed((): string => {
+//   // eslint-disable-next-line @typescript-eslint/no-use-before-define
+//   const checkResult = validateInput(props.modelValue as string);
+//   if (checkResult === true) return "";
+//   return checkResult;
+// });
+
+const dynamicHeigthClass = computed((): string => {
+  return props.heightClass;
 });
+
+const errorMessage = ref("");
 
 const hasError = computed((): boolean => {
-  return errorMessage.value !== "";
+  if (props.required) return errorMessage.value !== "";
+  return false;
 });
+
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    const checkResult = validateInput(newValue as string);
+
+    if (checkResult === true) {
+      errorMessage.value = "";
+      return;
+    }
+
+    errorMessage.value = checkResult as string;
+  }
+);
 
 const emit = defineEmits<{
   (e: "update:modelValue", target: any): void;

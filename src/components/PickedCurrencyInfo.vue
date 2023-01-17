@@ -12,13 +12,13 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { BaseSelectData } from "./forms/BaseSelect.vue";
+import { CurrencySelectorData } from "./forms/CurrencySelector.vue";
 
 const CURRENCY_FLAGS_BASE_URL =
   "https://wise.com/public-resources/assets/flags/rectangle/";
 
 const props = defineProps<{
-  pickedCurrency: BaseSelectData;
+  pickedCurrency: CurrencySelectorData;
 }>();
 
 const computedCurrencyFlagUrl = computed(

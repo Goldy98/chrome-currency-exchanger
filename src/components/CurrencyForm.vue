@@ -9,7 +9,7 @@
       required
     />
 
-    <BaseSelect
+    <CurrencySelector
       class="mt-5 h-20"
       name="from"
       label="From"
@@ -23,7 +23,7 @@
           :picked-currency="state.fromCurrency"
         />
       </template>
-    </BaseSelect>
+    </CurrencySelector>
 
     <div class="flex items-center justify-center mt-9">
       <img
@@ -35,7 +35,7 @@
       />
     </div>
 
-    <BaseSelect
+    <CurrencySelector
       name="to"
       label="To"
       :data="currencyDataForSelect"
@@ -49,7 +49,7 @@
           :picked-currency="state.toCurrency"
         />
       </template>
-    </BaseSelect>
+    </CurrencySelector>
 
     <div class="mt-10">
       <VButton
@@ -73,13 +73,15 @@ import {
   CurrencyKey,
 } from "@/constants/supported-currency";
 import BaseInput from "./forms/BaseInput.vue";
-import BaseSelect, { BaseSelectData } from "./forms/BaseSelect.vue";
+import CurrencySelector, {
+  CurrencySelectorData,
+} from "./forms/CurrencySelector.vue";
 import PickedCurrencyInfo from "./PickedCurrencyInfo.vue";
 import VButton from "./VButton.vue";
 
 type State = {
-  fromCurrency: null | BaseSelectData;
-  toCurrency: null | BaseSelectData;
+  fromCurrency: null | CurrencySelectorData;
+  toCurrency: null | CurrencySelectorData;
   canSubmit: ComputedRef<boolean>;
   amount: number;
 };
@@ -92,8 +94,8 @@ type Props = {
 
 const props = defineProps<Props>();
 
-const sortingArrowUrl = chrome.runtime.getURL(SortingArrow);
-// const sortingArrowUrl = SortingArrow;
+// const sortingArrowUrl = chrome.runtime.getURL(SortingArrow);
+const sortingArrowUrl = SortingArrow;
 
 const state = reactive<State>({
   fromCurrency: null,

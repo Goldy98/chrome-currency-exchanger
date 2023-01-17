@@ -2,7 +2,7 @@
   <div
     ref="select_slotted"
     data-widget-item="select-slotted"
-    class="select-none relative BaseSelectComponent"
+    class="select-none relative CurrencySelectorComponent"
   >
     <!--label-->
     <span
@@ -35,17 +35,6 @@
         <span v-if="$slots.icon" class="inline-flex flex-shrink-0">
           <slot name="icon" />
         </span>
-        <span v-else-if="searchable">
-          <SearchIcon />
-        </span>
-
-        <!-- search bar when searchable -->
-        <input
-          v-if="searchable"
-          v-model="state.searchValue"
-          type="text"
-          class="border-0 outline-none appearance-none flex-shrink w-full bg-transparent"
-        />
 
         <div v-else class="w-full flex flex-wrap">
           {{ textClass }}
@@ -89,6 +78,20 @@
       </template>
       <template v-else>
         <div>
+          <div v-if="searchable" class="py-2 px-3">
+            <BaseInput
+              v-model="state.searchValue"
+              name="SeachCurrency"
+              height-class="h-5"
+              :required="false"
+              :type="BaseInputType.TEXT"
+              placeholder="Search for currency"
+            >
+              <template #icon>
+                <SearchIcon />
+              </template>
+            </BaseInput>
+          </div>
           <div
             v-for="(choice, index) in state.dataToUse"
             :key="index"
@@ -123,16 +126,18 @@
 
 <script setup lang="ts">
 import { computed, onMounted, reactive, useSlots, watch } from "vue";
+import BaseInputType from "@/constants/types";
 import DropDownIcon from "../icons/DropDownIcon.vue";
 import RedInfoIcon from "../icons/RedInfoIcon.vue";
 import SearchIcon from "../icons/SearchIcon.vue";
+import BaseInput from "./BaseInput.vue";
 
-export type BaseSelectData = { value: string | null; label: string };
+export type CurrencySelectorData = { value: string | null; label: string };
 
 type Props = {
   name: string;
   showDefaultSelector?: boolean;
-  data: BaseSelectData[];
+  data: CurrencySelectorData[];
   textClass?: string;
   defaultKey?: string | number;
   hasSlot?: boolean;
@@ -147,8 +152,8 @@ type Props = {
 };
 
 type Emits = {
-  (event: "change", choice: BaseSelectData): void;
-  (event: "multiple-change", choice: BaseSelectData[]): void;
+  (event: "change", choice: CurrencySelectorData): void;
+  (event: "multiple-change", choice: CurrencySelectorData[]): void;
   (event: "toggle", show: boolean): void;
   (event: "search-change", value: string): void;
 };
@@ -161,12 +166,12 @@ const props = withDefaults(defineProps<Props>(), {
   defaultKey: "",
   autoSelectFirstItem: true,
   toggleBind: false,
-  searchable: false,
+  searchable: true,
 });
 
 const slots = useSlots();
 
-const EMPTY_CHOICE_VALUE: BaseSelectData = {
+const EMPTY_CHOICE_VALUE: CurrencySelectorData = {
   label: "",
   value: null,
 };
@@ -177,7 +182,7 @@ const state = reactive({
   show: false,
   // dataToUse: props.data,
   searchValue: "",
-  dataToUse: computed((): BaseSelectData[] => {
+  dataToUse: computed((): CurrencySelectorData[] => {
     if (state.searchValue === "" || !props.searchable) return props.data;
 
     return props.data.filter((el) =>
@@ -199,10 +204,10 @@ function toggle() {
   emits("toggle", state.show);
 }
 
-function choose(item: BaseSelectData): void {
+function choose(item: CurrencySelectorData): void {
   state.actualSelection = item;
   emits("change", item);
-  state.searchValue = item.label ?? "";
+  state.searchValue = "";
   state.show = false;
 }
 
