@@ -2,6 +2,8 @@ import { CurrencyKey } from "./constants/supported-currency";
 
 const API_BASE_URL = "https://api.exchangerate.host";
 
+const MAX_DECIMAL_COUNT = 2;
+
 export type ConversionRequestPayload = {
   from: CurrencyKey;
   to: CurrencyKey;
@@ -72,8 +74,8 @@ export class ApiClient {
       return {
         success: true,
         data: {
-          result: rawData.result,
-          usedRate: rawData.info.rate,
+          result: +rawData.result.toFixed(MAX_DECIMAL_COUNT),
+          usedRate: +rawData.info.rate.toFixed(MAX_DECIMAL_COUNT),
         },
       };
     } catch (error) {

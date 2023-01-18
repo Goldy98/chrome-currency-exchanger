@@ -96,6 +96,7 @@ const props = withDefaults(
 async function onConversionRequest(payload: ConversionRequestPayload) {
   state.sentPayload = payload;
   state.isConverting = true;
+
   const rawResult = await ApiClient.convert(payload);
 
   if (rawResult.success) {
