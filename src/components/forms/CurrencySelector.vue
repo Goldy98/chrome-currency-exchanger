@@ -38,10 +38,7 @@
 
         <div v-else class="w-full flex flex-wrap">
           {{ textClass }}
-          <span
-            v-if="!multiple && !isAvailableSlot('choosenItem')"
-            :class="textClass"
-          >
+          <span v-if="!isAvailableSlot('choosenItem')" :class="textClass">
             {{ state.actualSelection?.label || emptyLabel }}
           </span>
           <slot
@@ -69,40 +66,40 @@
       class="select_slotted_options w-full rounded border border-white bg-white absolute mt-[0.281rem] z-[999999]"
       data-widget-item="select_slotted_group"
     >
-      <template v-if="hasSlot">
-        <slot />
-      </template>
-      <template v-else>
-        <div>
-          <div v-if="searchable" class="py-2 px-3">
-            <BaseInput
-              v-model="state.searchValue"
-              name="SeachCurrency"
-              height-class="h-5"
-              :required="false"
-              :type="BaseInputType.TEXT"
-              placeholder="Search for currency"
-            >
-              <template #icon>
-                <SearchIcon />
-              </template>
-            </BaseInput>
-          </div>
-          <div v-if="!state.hasAvailableData" class="text-center p-5">
-            <span>No results</span>
-          </div>
-          <div
-            v-for="(choice, index) in state.dataToUse"
-            :key="index"
-            class="item w-full py-2 px-4 cursor-pointer text-left hover:bg-hoverColor select-item"
-            @click.prevent.stop="choose(choice)"
+      <div>
+        <!-- Search Input -->
+        <div v-if="searchable" class="py-2 px-3">
+          <BaseInput
+            v-model="state.searchValue"
+            name="SeachCurrency"
+            height-class="h-5"
+            :required="false"
+            :type="BaseInputType.TEXT"
+            placeholder="Search for currency"
           >
-            <span class="font-semibold text-xs text-394452">
-              {{ choice.label }}
-            </span>
-          </div>
+            <template #icon>
+              <SearchIcon />
+            </template>
+          </BaseInput>
         </div>
-      </template>
+
+        <!-- Empty Text -->
+        <div v-if="!state.hasAvailableData" class="text-center p-5">
+          <span>No results</span>
+        </div>
+
+        <!-- Select Options -->
+        <div
+          v-for="(choice, index) in state.dataToUse"
+          :key="index"
+          class="item w-full py-2 px-4 cursor-pointer text-left hover:bg-hoverColor select-item"
+          @click.prevent.stop="choose(choice)"
+        >
+          <span class="font-semibold text-xs text-394452">
+            {{ choice.label }}
+          </span>
+        </div>
+      </div>
     </div>
     <!---->
 
@@ -139,7 +136,6 @@ type Props = {
   data: CurrencySelectorData[];
   textClass?: string;
   defaultKey?: string | number;
-  hasSlot?: boolean;
   toggleBind?: boolean;
   label: string;
   required?: boolean;

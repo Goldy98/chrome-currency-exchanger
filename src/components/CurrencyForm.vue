@@ -28,8 +28,7 @@
     <div class="flex items-center justify-center mt-9">
       <img
         :src="sortingArrowUrl"
-        alt=""
-        srcset=""
+        alt="Sorting arrow"
         class="w-[20px] cursor-pointer"
         @click="invertCurrency"
       />
