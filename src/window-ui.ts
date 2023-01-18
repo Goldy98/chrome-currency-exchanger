@@ -40,7 +40,7 @@ export function loadComponentStyleIntoDom() {
     background-color: white;
     z-index: 999999999;
     border-radius: 12px;
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 6px 30px 0px rgb(0 0 0 / 20%);
   }
 `;
 
