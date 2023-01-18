@@ -64,11 +64,7 @@
 
     <!--select dropdown-->
     <div
-      v-if="
-        state.show &&
-        (state.dataToUse.length > 0 || hasSlot) &&
-        showDefaultSelector
-      "
+      v-if="state.show && showDefaultSelector"
       ref="select_slotted_options"
       class="select_slotted_options w-full rounded border border-white bg-white absolute mt-[0.281rem] z-[999999]"
       data-widget-item="select_slotted_group"
@@ -91,6 +87,9 @@
                 <SearchIcon />
               </template>
             </BaseInput>
+          </div>
+          <div v-if="!state.hasAvailableData" class="text-center p-5">
+            <span>No results</span>
           </div>
           <div
             v-for="(choice, index) in state.dataToUse"
@@ -189,6 +188,7 @@ const state = reactive({
       el.label.toLowerCase().includes(state.searchValue.toLowerCase())
     );
   }),
+  hasAvailableData: computed((): boolean => state.dataToUse.length > 0),
   actualSelection: props.data[0] ?? {},
   selectSlottedButton: null,
   selecteSlottedOptions: null,
