@@ -40,11 +40,18 @@ export function getWindowSelectionIfNumber(): WindowSelection | undefined {
       const numberValue = splittedSanitizedText.find((el) =>
         getNumberValue(el)
       );
+
       if (numberValue !== undefined) amount = +numberValue;
     }
   });
 
-  if (selectedText && amount)
+  if (!currencyCodeFromFoundSymbol) {
+    const numberValue = getNumberValue(sanitizedText);
+
+    if (numberValue !== undefined) amount = +numberValue;
+  }
+
+  if (sanitizedText && amount)
     return cleanUndefOrNull({
       amount,
       currencyCode: currencyCodeFromFoundSymbol,
