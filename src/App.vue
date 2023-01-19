@@ -15,6 +15,7 @@
           :is-converting="state.isConverting"
           :pre-set-amount="state.selectedNumberFromActivePage"
           :app-is-embedded="isEmbedded"
+          :default-from-currency="selection?.currencyCode"
           @submit="onConversionRequest"
         />
       </div>
@@ -47,7 +48,7 @@ import { ApiClient, ConversionRequestPayload, ConversionResult } from "./api";
 import ConversionError from "./components/ConversionError.vue";
 import CurrencyForm from "./components/CurrencyForm.vue";
 import Result from "./components/Result.vue";
-import { ActivePageEvent } from "@/constants/types";
+import { ActivePageEvent, WindowSelection } from "@/constants/types";
 
 type State = {
   isConverting: boolean;
@@ -57,20 +58,19 @@ type State = {
   selectedNumberFromActivePage?: number;
 };
 
+type Props = {
+  isEmbedded?: boolean;
+  selection?: WindowSelection;
+};
+
 const state = reactive<State>({
   isConverting: false,
   errorOccured: false,
 });
 
-const props = withDefaults(
-  defineProps<{
-    isEmbedded?: boolean;
-    preSetAmount?: number;
-  }>(),
-  {
-    isEmbedded: false,
-  }
-);
+const props = withDefaults(defineProps<Props>(), {
+  isEmbedded: false,
+});
 
 // Used only for test purpose
 /* async function fakeConversion(payload: ConversionRequestPayload) {
@@ -120,8 +120,8 @@ onMounted(() => {
     }
   });
 
-  if (props.preSetAmount)
-    state.selectedNumberFromActivePage = props.preSetAmount;
+  if (props.selection)
+    state.selectedNumberFromActivePage = props.selection.amount;
 });
 </script>
 

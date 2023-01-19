@@ -3,6 +3,7 @@ import App from "./App.vue";
 import logo from "./assets/logo.png";
 import cancelIcon from "./assets/cancel.png";
 import AppStyle from "./assets/styles/base.css?inline";
+import { WindowSelection } from "./constants/types";
 
 export function loadComponentStyleIntoDom() {
   const styleTag = document.createElement("style");
@@ -18,6 +19,8 @@ export function loadComponentStyleIntoDom() {
     border-radius: 100%;
     border: solid 0px transparent;
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    align-items: center;
   }
   #closeCurrencyConverterButton {
     position: absolute;
@@ -77,7 +80,7 @@ export function buildIconButton(id: ButtonType) {
 export function appendConverterPopUpForm(
   xPosition: string,
   yPosition: string,
-  selectedNumber: number
+  selection: WindowSelection
 ) {
   const converterForm = document.createElement("div");
 
@@ -91,7 +94,7 @@ export function appendConverterPopUpForm(
 
   const app = createApp(App, {
     isEmbedded: true,
-    preSetAmount: selectedNumber,
+    selection,
   });
 
   app.mount(converterForm);

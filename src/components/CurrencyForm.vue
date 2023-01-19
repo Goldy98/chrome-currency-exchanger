@@ -14,6 +14,7 @@
       name="from"
       label="From"
       :data="currencyDataForSelect"
+      :default-key="defaultFromCurrency"
       required
       @change="(choice) => (state.fromCurrency = choice)"
     >
@@ -50,7 +51,7 @@
       </template>
     </CurrencySelector>
 
-    <div class="mt-10">
+    <div class="mt-10 flex">
       <VButton
         label="Convert"
         :disabled="!state.canSubmit || isConverting"
@@ -89,12 +90,13 @@ type Props = {
   isConverting: boolean;
   preSetAmount?: number;
   appIsEmbedded: boolean;
+  defaultFromCurrency?: string;
 };
 
 const props = defineProps<Props>();
 
-// const sortingArrowUrl = chrome.runtime.getURL(SortingArrow);
-const sortingArrowUrl = SortingArrow;
+const sortingArrowUrl = chrome.runtime.getURL(SortingArrow);
+// const sortingArrowUrl = SortingArrow;
 
 const state = reactive<State>({
   fromCurrency: null,

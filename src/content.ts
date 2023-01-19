@@ -25,7 +25,7 @@ document.addEventListener("mouseup", (event) => {
   if (windowSelectionAsNumber) {
     convertButton.style.top = `${event.pageY}px`;
     convertButton.style.left = `${event.pageX}px`;
-    convertButton.style.display = "block";
+    convertButton.style.display = "flex";
     buttonIsDisplayed = true;
 
     // Send the selected text to the extension
@@ -68,9 +68,9 @@ convertButton.addEventListener("click", (event) => {
     ).app;
 
     // eslint-disable-next-line no-magic-numbers
-    cancelButton.style.top = `${event.pageY - 20}px`;
+    cancelButton.style.top = `${event.pageY - 15}px`;
     // eslint-disable-next-line no-magic-numbers
-    cancelButton.style.left = `${event.pageX + 317}px`;
+    cancelButton.style.left = `${event.pageX + 320}px`;
     cancelButton.style.display = "block";
 
     buttonIsDisplayed = true;

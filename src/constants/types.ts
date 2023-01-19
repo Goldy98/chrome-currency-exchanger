@@ -13,4 +13,8 @@ export type ActivePageEvent = {
   payload: any;
 };
 
+export type WindowSelection = {
+  amount: number;
+  currencyCode: string | undefined;
+};
 export default BaseInputType;
