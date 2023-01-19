@@ -4,7 +4,7 @@
   "description": "A simple currency exchange extension (including XOF)",
   "host_permissions": ["https://api.exchangerate.host/*"],
   "author": "sagboaime267@gmail.com",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "action": {
     "default_popup": "index.html",
     "default_icon": "logo.png"
@@ -21,5 +21,14 @@
       "matches": ["<all_urls>"],
       "js": ["src/content.ts"]
     }
-  ]
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "MacCtrl+Shift+F"
+      },
+      "description": "Opens currecny exchanger"
+    }
+  }
 }
