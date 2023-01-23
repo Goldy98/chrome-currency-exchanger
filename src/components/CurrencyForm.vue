@@ -26,7 +26,7 @@
       </template>
     </CurrencySelector>
 
-    <div class="flex items-center justify-center mt-9">
+    <div class="flex items-center justify-center mt-5">
       <img
         :src="sortingArrowUrl"
         alt="Sorting arrow"
@@ -51,7 +51,7 @@
       </template>
     </CurrencySelector>
 
-    <div class="mt-10 flex">
+    <div class="mt-6 flex">
       <VButton
         label="Convert"
         :disabled="!state.canSubmit || isConverting"
@@ -96,7 +96,6 @@ type Props = {
 const props = defineProps<Props>();
 
 const sortingArrowUrl = chrome.runtime.getURL(SortingArrow);
-// const sortingArrowUrl = SortingArrow;
 
 const state = reactive<State>({
   fromCurrency: null,

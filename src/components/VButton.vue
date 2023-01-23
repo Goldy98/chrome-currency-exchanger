@@ -72,7 +72,6 @@ export default defineComponent({
       dynamicClasses,
       labelClass,
       labelComputed,
-      // onClick,
     };
   },
 });
