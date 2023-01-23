@@ -9,7 +9,7 @@
       </h1>
     </div>
 
-    <div class="p-5">
+    <div class="p-4">
       <div class="w-full mt-2">
         <CurrencyForm
           :is-converting="state.isConverting"
@@ -21,23 +21,22 @@
       </div>
 
       <Transition name="fade">
-        <div v-if="state.sentPayload && state.successResult" class="mt-5">
+        <div
+          v-if="state.sentPayload && state.successResult && !state.errorOccured"
+          class="mt-5"
+        >
           <Result
             :payload="state.sentPayload"
             :request-result="state.successResult"
           />
         </div>
-        <!-- <div class="mt-2">
-        <Result
-        :payload="{ amount: 234, from: 'XOF', to: 'XOF' }"
-        :request-result="{ result: 400, usedRate: 34 }"
-        />
-      </div> -->
       </Transition>
 
-      <div v-if="state.errorOccured" class="mt-2">
-        <ConversionError />
-      </div>
+      <Transition name="fade">
+        <div v-if="state.errorOccured" class="mt-2">
+          <ConversionError />
+        </div>
+      </Transition>
     </div>
   </div>
 </template>

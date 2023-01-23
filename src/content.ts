@@ -70,7 +70,7 @@ convertButton.addEventListener("click", (event) => {
     // eslint-disable-next-line no-magic-numbers
     cancelButton.style.top = `${event.pageY - 15}px`;
     // eslint-disable-next-line no-magic-numbers
-    cancelButton.style.left = `${event.pageX + 320}px`;
+    cancelButton.style.left = `${event.pageX + 308}px`;
     cancelButton.style.display = "block";
 
     buttonIsDisplayed = true;

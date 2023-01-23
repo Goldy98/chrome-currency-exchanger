@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import logo from "./assets/logo.png";
-import cancelIcon from "./assets/cancel.png";
+import CancelIcon from "./assets/cancel-icon.svg";
 import AppStyle from "./assets/styles/base.css?inline";
 import { WindowSelection } from "./constants/types";
 
@@ -39,7 +39,7 @@ export function loadComponentStyleIntoDom() {
   }
   #currencyConverterForm {
     position: absolute;
-    width: 340px;
+    width: 332px;
     background-color: white;
     z-index: 999999999;
     border-radius: 12px;
@@ -58,7 +58,7 @@ export type ButtonType =
 
 const buttonTypeIconMappingObj: Record<ButtonType, string> = {
   launchCurrencyConverterButton: chrome.runtime.getURL(logo),
-  closeCurrencyConverterButton: chrome.runtime.getURL(cancelIcon),
+  closeCurrencyConverterButton: chrome.runtime.getURL(CancelIcon),
 };
 
 export function buildIconButton(id: ButtonType) {

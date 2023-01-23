@@ -8,6 +8,17 @@ body {
   @import "reset.scss", "utility.scss", "text.scss", "margin.scss",
     "sizing.scss";
 
+  /* Scrollbar custom styling */
+  ::-webkit-scrollbar {
+    width: 5px;
+    background-color: white;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #51aa1c;
+    border-radius: 100px;
+  }
+
   /* Colors */
 
   .bg-primary {

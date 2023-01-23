@@ -27,7 +27,7 @@ function cleanUndefOrNull<T>(obj: T): T {
 export function getWindowSelectionIfNumber(): WindowSelection | undefined {
   const selectedText = window.getSelection()?.toString();
 
-  const sanitizedText = selectedText?.replaceAll(",", ".").replaceAll(" ", "");
+  const sanitizedText = selectedText?.replaceAll(",", "");
 
   let currencyCodeFromFoundSymbol: string | undefined;
   let amount: number | undefined;
