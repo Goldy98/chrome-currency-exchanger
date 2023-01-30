@@ -4,4 +4,6 @@ export const SUPPORTED_CURRENCY_SYMBOLS = {
   $: "USD",
   "€": "EUR",
   "£": "GBP",
+  EUR: "EUR",
+  USD: "USD",
 };
