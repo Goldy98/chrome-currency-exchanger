@@ -1,11 +1,5 @@
-import { NOT_FOUND_ITEM_INDEX, SUPPORTED_CURRENCY_SYMBOLS } from "@/constants";
+import { SUPPORTED_CURRENCY_SYMBOLS } from "@/constants";
 import { WindowSelection } from "@/constants/types";
-
-export function containElement(searchArr: any[], rowId: string, idKey = "id") {
-  return (
-    searchArr.findIndex((el) => el[idKey] === rowId) !== NOT_FOUND_ITEM_INDEX
-  );
-}
 
 export function getNumberValue(value: string = "") {
   try {

@@ -7,9 +7,6 @@ import { WindowSelection } from "./constants/types";
 
 const CURRENCY_EXCHANGER_TAG_NAME = "currency-exchanger";
 
-// Register the tag for currency exchanger as a web component in the page context
-customElements.define(CURRENCY_EXCHANGER_TAG_NAME, HTMLDivElement);
-
 // Style for outer component (launch button, cancel button, conversion form)
 export function loadComponentStyleIntoDom() {
   const styleTag = document.createElement("style");
@@ -98,6 +95,9 @@ export function appendConverterPopUpForm(
 } {
   const converterForm = document.createElement(CURRENCY_EXCHANGER_TAG_NAME);
 
+  // Register the tag for currency exchanger as a web component in the page context
+  customElements.define(CURRENCY_EXCHANGER_TAG_NAME, HTMLElement);
+
   document.body.appendChild(converterForm);
 
   converterForm.style.top = yPosition;
@@ -110,7 +110,7 @@ export function appendConverterPopUpForm(
     selection,
   });
 
-  app.mount(shadowRoot as any);
+  app.mount(shadowRoot as any); // Sorry for the any assertion
 
   loadStyleIntoShadowRoot(shadowRoot);
 

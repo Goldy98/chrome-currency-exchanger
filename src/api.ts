@@ -43,24 +43,26 @@ type ApiRawConvertResult = {
 };
 
 // API Response Sample
-// {
-//   "motd": {
-//       "msg": "If you or your company use this project or like what we doing, please consider backing us so we can continue maintaining and evolving this project.",
-//       "url": "https://exchangerate.host/#/donate"
-//   },
-//   "success": true,
-//   "query": {
-//       "from": "USD",
-//       "to": "EUR",
-//       "amount": 5000
-//   },
-//   "info": {
-//       "rate": 0.943997
-//   },
-//   "historical": false,
-//   "date": "2022-12-18",
-//   "result": 4719.984408
-// }
+/**
+ * {
+ *   "motd": {
+ *       "msg": "If you or your company use this project or like what we doing, please consider backing us so we can continue maintaining and evolving this project.",
+ *       "url": "https://exchangerate.host/#/donate"
+ *   },
+ *   "success": true,
+ *   "query": {
+ *       "from": "USD",
+ *       "to": "EUR",
+ *       "amount": 5000
+ *   },
+ *   "info": {
+ *       "rate": 0.943997
+ *   },
+ *   "historical": false,
+ *   "date": "2022-12-18",
+ *   "result": 4719.984408
+ * }
+ */
 
 export class ApiClient {
   static async convert(
