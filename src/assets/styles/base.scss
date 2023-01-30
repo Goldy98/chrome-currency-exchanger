@@ -1,120 +1,122 @@
+@import "reset.scss", "utility.scss", "text.scss", "margin.scss", "sizing.scss",
+  "currency-selector.scss", "base-input.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
 body {
   margin: 0;
 }
 
-.currencyFormApp {
-  font-family: "Montserrat", sans-serif;
+/* Scrollbar custom styling */
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: white;
+}
 
-  @import "reset.scss", "utility.scss", "text.scss", "margin.scss",
-    "sizing.scss";
+::-webkit-scrollbar-thumb {
+  background: #51aa1c;
+  border-radius: 100px;
+}
 
-  /* Scrollbar custom styling */
-  ::-webkit-scrollbar {
-    width: 5px;
-    background-color: white;
-  }
+/* Colors */
 
-  ::-webkit-scrollbar-thumb {
-    background: #51aa1c;
-    border-radius: 100px;
-  }
+.bg-primary {
+  background-color: rgb(10 55 100);
+}
 
-  /* Colors */
+.text-white {
+  color: rgb(255 255 255);
+}
 
-  .bg-primary {
-    background-color: rgb(10 55 100);
-  }
+.red {
+  color: #da1414;
+}
 
-  .text-white {
-    color: rgb(255 255 255);
-  }
+.text-DA1414 {
+  color: #da1414;
+}
 
-  .red {
-    color: #da1414;
-  }
+.bg-white {
+  background-color: rgb(255 255 255);
+}
 
-  .text-DA1414 {
-    color: #da1414;
-  }
+.text-primary {
+  --tw-text-opacity: 1;
+  color: rgb(10 55 100 / var(--tw-text-opacity));
+}
 
-  .bg-white {
-    background-color: rgb(255 255 255);
-  }
+.text-394452 {
+  color: #394452;
+}
 
-  .text-primary {
-    --tw-text-opacity: 1;
-    color: rgb(10 55 100 / var(--tw-text-opacity));
-  }
+.rounded-lg {
+  border-radius: 0.5rem /* 8px */;
+}
 
-  .text-394452 {
-    color: #394452;
-  }
+.rounded-md {
+  border-radius: 0.375rem /* 6px */;
+}
 
-  .rounded-lg {
-    border-radius: 0.5rem /* 8px */;
-  }
+.border {
+  border-style: solid;
+  border-width: 1px;
+}
 
-  .rounded-md {
-    border-radius: 0.375rem /* 6px */;
-  }
+.border-0 {
+  border-width: 0px;
+}
 
-  .border {
-    border-style: solid;
-    border-width: 1px;
-  }
+.border-\[\#858C94\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(133 140 148 / var(--tw-border-opacity));
+}
 
-  .border-0 {
-    border-width: 0px;
-  }
+.bg-transparent {
+  background-color: transparent;
+}
 
-  .border-\[\#858C94\] {
-    --tw-border-opacity: 1;
-    border-color: rgb(133 140 148 / var(--tw-border-opacity));
-  }
+.overflow-hidden {
+  overflow: hidden;
+}
 
-  .bg-transparent {
-    background-color: transparent;
-  }
+.bg-\[\#DADEE3\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(218 222 227 / var(--tw-bg-opacity));
+}
 
-  .overflow-hidden {
-    overflow: hidden;
-  }
+.bg-secondary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(81 170 28 / var(--tw-bg-opacity));
+}
 
-  .bg-\[\#DADEE3\] {
-    --tw-bg-opacity: 1;
-    background-color: rgb(218 222 227 / var(--tw-bg-opacity));
-  }
+.bg-disabledButton {
+  background-color: #7d8b94;
+}
 
-  .bg-secondary {
-    --tw-bg-opacity: 1;
-    background-color: rgb(81 170 28 / var(--tw-bg-opacity));
-  }
+.bg-secondary {
+  background-color: #51aa1c;
+}
 
-  .bg-disabledButton {
-    background-color: #7d8b94;
-  }
+.bg-lightRed {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 157 157 / var(--tw-bg-opacity));
+}
 
-  .bg-secondary {
-    background-color: #51aa1c;
-  }
+.bg-lightGreen {
+  --tw-bg-opacity: 1;
+  background-color: rgb(214 239 220 / var(--tw-bg-opacity));
+}
 
-  .bg-lightRed {
-    --tw-bg-opacity: 1;
-    background-color: rgb(237 157 157 / var(--tw-bg-opacity));
-  }
+.text-deepBlue {
+  --tw-text-opacity: 1;
+  color: rgb(41 70 92 / var(--tw-text-opacity));
+}
 
-  .bg-lightGreen {
-    --tw-bg-opacity: 1;
-    background-color: rgb(214 239 220 / var(--tw-bg-opacity));
-  }
-
-  .text-deepBlue {
-    --tw-text-opacity: 1;
-    color: rgb(41 70 92 / var(--tw-text-opacity));
-  }
-
-  .text-secondaryBlack {
-    --tw-text-opacity: 1;
-    color: rgb(48 51 49 / var(--tw-text-opacity));
-  }
+.text-secondaryBlack {
+  --tw-text-opacity: 1;
+  color: rgb(48 51 49 / var(--tw-text-opacity));
 }

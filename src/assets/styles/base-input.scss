@@ -1,0 +1,48 @@
+/* Styles for BaseInput */
+.BaseInputComponent {
+  .baseinput-core {
+    align-items: center;
+  }
+
+  .error {
+    background: #feefef;
+    border: 1px solid #da1414;
+  }
+
+  .success {
+    background: #edf9f0;
+    border: 1px solid #287d3c;
+  }
+
+  .error input {
+    -webkit-box-shadow: 0 0 0px 1000px #feefef inset !important;
+  }
+
+  input::placeholder {
+    font-weight: normal !important;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  input::-ms-reveal,
+  input::-ms-clear {
+    display: none;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}

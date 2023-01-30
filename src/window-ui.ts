@@ -1,15 +1,20 @@
-import { createApp } from "vue";
+import { App as VueApp, createApp } from "vue";
 import App from "./App.vue";
-import logo from "./assets/logo.png";
 import CancelIcon from "./assets/cancel-icon.svg";
-import AppStyle from "./assets/styles/base.css?inline";
+import logo from "./assets/logo.png";
+import AppCss from "./assets/styles/base.css?inline";
 import { WindowSelection } from "./constants/types";
 
+const CURRENCY_EXCHANGER_TAG_NAME = "currency-exchanger";
+
+// Register the tag for currency exchanger as a web component in the page context
+customElements.define(CURRENCY_EXCHANGER_TAG_NAME, HTMLDivElement);
+
+// Style for outer component (launch button, cancel button, conversion form)
 export function loadComponentStyleIntoDom() {
   const styleTag = document.createElement("style");
 
   styleTag.innerHTML = `
-  ${AppStyle}
   #launchCurrencyConverterButton {
     position: absolute;
     background: white;
@@ -37,7 +42,7 @@ export function loadComponentStyleIntoDom() {
   #closeCurrencyConverterButton:hover, #launchCurrencyConverterButton:hover {
     cursor: pointer;
   }
-  #currencyConverterForm {
+  ${CURRENCY_EXCHANGER_TAG_NAME} {
     position: absolute;
     width: 332px;
     background-color: white;
@@ -46,8 +51,6 @@ export function loadComponentStyleIntoDom() {
     box-shadow: 0px 6px 30px 0px rgb(0 0 0 / 20%);
   }
 `;
-
-  styleTag.type = "text/css";
 
   document.head.appendChild(styleTag);
 }
@@ -77,27 +80,39 @@ export function buildIconButton(id: ButtonType) {
   return button;
 }
 
+function loadStyleIntoShadowRoot(shadowRoot: ShadowRoot) {
+  const styleTag = document.createElement("style");
+
+  styleTag.innerHTML = AppCss;
+
+  shadowRoot.appendChild(styleTag);
+}
+
 export function appendConverterPopUpForm(
   xPosition: string,
   yPosition: string,
   selection: WindowSelection
-) {
-  const converterForm = document.createElement("div");
+): {
+  converterForm: HTMLElement;
+  app: VueApp;
+} {
+  const converterForm = document.createElement(CURRENCY_EXCHANGER_TAG_NAME);
 
-  converterForm.id = "currencyConverterForm";
-  converterForm.classList.add("currencyFormApp");
+  document.body.appendChild(converterForm);
 
   converterForm.style.top = yPosition;
   converterForm.style.left = xPosition;
 
-  document.body.appendChild(converterForm);
+  const shadowRoot = converterForm.attachShadow({ mode: "open" });
 
   const app = createApp(App, {
     isEmbedded: true,
     selection,
   });
 
-  app.mount(converterForm);
+  app.mount(shadowRoot as any);
+
+  loadStyleIntoShadowRoot(shadowRoot);
 
   return { converterForm, app };
 }

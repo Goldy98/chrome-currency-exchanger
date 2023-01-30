@@ -27,11 +27,4 @@ const computedCurrencyFlagUrl = computed(
 );
 </script>
 
-<style>
-.currency-flag {
-  display: inline-block;
-  width: 24px;
-  height: 16px;
-  background-size: cover;
-}
-</style>
+<style scoped></style>

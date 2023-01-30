@@ -1,3 +1,4 @@
+import "@webcomponents/webcomponentsjs";
 import { App } from "vue";
 import { ActivePageEvent } from "./constants/types";
 import { getWindowSelectionIfNumber } from "./helpers";
@@ -17,6 +18,7 @@ document.body.appendChild(cancelButton);
 
 let buttonIsDisplayed = false;
 let currentConverterForm: App | null;
+let currentConverterFormElement: HTMLElement | null;
 
 document.addEventListener("mouseup", (event) => {
   if (buttonIsDisplayed || currentConverterForm) return;
@@ -54,6 +56,7 @@ cancelButton.addEventListener("click", () => {
     currentConverterForm = null;
     cancelButton.style.display = "none";
     window.getSelection()?.empty();
+    currentConverterFormElement?.remove();
   }
 });
 
@@ -61,11 +64,14 @@ convertButton.addEventListener("click", (event) => {
   const windowSelectionAsNumber = getWindowSelectionIfNumber();
 
   if (windowSelectionAsNumber) {
-    currentConverterForm = appendConverterPopUpForm(
+    const { app, converterForm } = appendConverterPopUpForm(
       `${event.pageX}px`,
       `${event.pageY}px`,
       windowSelectionAsNumber
-    ).app;
+    );
+
+    currentConverterForm = app;
+    currentConverterFormElement = converterForm;
 
     // eslint-disable-next-line no-magic-numbers
     cancelButton.style.top = `${event.pageY - 15}px`;

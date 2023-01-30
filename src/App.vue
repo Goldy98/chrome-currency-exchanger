@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div id="root">
     <div
       v-if="!isEmbedded"
-      class="bg-primary w-full px-3 pt-5 pb-4 flex-col justify-center"
+      class="bg-primary w-full py-3 flex-col justify-center"
     >
-      <h1 class="text-center font-bold text-3xl mb-5 text-white">
+      <h1 class="text-center font-bold text-white text-lg">
         Currency Converter
       </h1>
     </div>
@@ -133,6 +133,10 @@ onMounted(() => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+#root {
+  width: 322px;
 }
 </style>
 

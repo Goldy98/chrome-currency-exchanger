@@ -254,26 +254,3 @@ function isAvailableSlot(key: string) {
   return slots[key];
 }
 </script>
-
-<style lang="scss" scoped>
-div [data-widget-item="select_slotted_group"] {
-  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15));
-  max-height: 150px;
-  border: solid 1px rgba(0, 0, 0, 0.15);
-  border-radius: 0.5rem;
-  overflow-y: auto;
-  position: absolute !important;
-  z-index: 9999999;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.error {
-  background: #feefef;
-  border: 1px solid #da1414;
-}
-
-.select-item:hover {
-  background-color: #eef2f8;
-}
-</style>
