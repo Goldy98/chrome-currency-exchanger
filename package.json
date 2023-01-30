@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@types/chrome": "0.0.204",
+    "@webcomponents/webcomponentsjs": "^2.7.0",
     "sass": "^1.57.0",
     "vue": "^3.2.45"
   },
