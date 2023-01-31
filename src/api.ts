@@ -73,12 +73,23 @@ export class ApiClient {
 
       const rawData: ApiRawConvertResult = await result.json();
 
-      return {
-        success: true,
-        data: {
+      let resultData: ConversionResult;
+
+      if ([payload.from, payload.to].includes("BTC")) {
+        resultData = {
+          result: +rawData.result,
+          usedRate: +rawData.info.rate,
+        };
+      } else {
+        resultData = {
           result: +rawData.result.toFixed(MAX_DECIMAL_COUNT),
           usedRate: +rawData.info.rate.toFixed(MAX_DECIMAL_COUNT),
-        },
+        };
+      }
+
+      return {
+        success: true,
+        data: resultData,
       };
     } catch (error) {
       return {
