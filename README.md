@@ -1,18 +1,33 @@
-# Vue 3 + TypeScript + Vite
+<h1 align="center"><a href="https://chrome.google.com/webstore/detail/tailwind-color-picker/iaknbjonlhaajcfpfcimahgpfknpihfm">Currency Exchanger</a></h1>
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+<p align="center">
+  This chrome extension allows you to convert a large number of different currencies with up to date exchange rates (provided by https://api.exchangerate.host).
+</p>
+<div align="center">
 
-## Recommended IDE Setup
+![tailwindcolorpicker](https://user-images.githubusercontent.com/54216013/215746553-061d8de4-251f-4d40-a563-a01c78d348dc.png)
+
+</div>
+
+## How to install
+
+Install the [official Chrome Extension](https://chrome.google.com/webstore/detail/tailwind-color-picker/iaknbjonlhaajcfpfcimahgpfknpihfm) today!
+
+## Motivation
+
+I built this cause i couldn't find any extension on the chrome webstore with support for my local currencies (XOF).
+
+## How to use it locally
+
+1. Run `git clone https://github.com/Goldy98/chrome-currency-exchanger`.
+2. Go to `chrome://extensions`, enable developer mode at the top right, click "Load Unpacked", then select the dist folder.
+3. Run 'CMD + Shift + F' to toggle the extension, or click it from the toolbar to activate it
+
+## Credit
+
+- Uses [tailwind-color-picker](https://github.com/Nutlope/tailwind-color-picker) for the README template
+- Uses [crxjs](https://crxjs.dev/vite-plugin) for the development (hot reload & vue support)
+
+## Recommended IDE Setup for Contribution
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support For `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
