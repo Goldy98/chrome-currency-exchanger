@@ -6,9 +6,14 @@ import {
   loadComponentStyleIntoDom,
   appendConverterPopUpForm,
   buildIconButton,
+  CURRENCY_EXCHANGER_TAG_NAME,
+  CURRENCY_EXCHANGER_WIDTH,
 } from "./window-ui";
 
 loadComponentStyleIntoDom();
+
+// Register the tag for currency exchanger as a web component in the page context
+customElements.define(CURRENCY_EXCHANGER_TAG_NAME, HTMLElement);
 
 const convertButton = buildIconButton("launchCurrencyConverterButton");
 const cancelButton = buildIconButton("closeCurrencyConverterButton");
@@ -63,9 +68,16 @@ cancelButton.addEventListener("click", () => {
 convertButton.addEventListener("click", (event) => {
   const windowSelectionAsNumber = getWindowSelectionIfNumber();
 
+  // This variable is used to determine the offset to apply in case the form would appear too close to the
+  // page right border
+  const xOffset =
+    window.innerWidth - convertButton.offsetLeft < CURRENCY_EXCHANGER_WIDTH
+      ? CURRENCY_EXCHANGER_WIDTH
+      : 0;
+
   if (windowSelectionAsNumber) {
     const { app, converterForm } = appendConverterPopUpForm(
-      `${event.pageX}px`,
+      `${event.pageX - xOffset}px`,
       `${event.pageY}px`,
       windowSelectionAsNumber
     );
@@ -76,7 +88,7 @@ convertButton.addEventListener("click", (event) => {
     // eslint-disable-next-line no-magic-numbers
     cancelButton.style.top = `${event.pageY - 15}px`;
     // eslint-disable-next-line no-magic-numbers
-    cancelButton.style.left = `${event.pageX + 308}px`;
+    cancelButton.style.left = `${event.pageX + 300 - xOffset}px`;
     cancelButton.style.display = "block";
 
     buttonIsDisplayed = true;

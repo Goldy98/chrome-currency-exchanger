@@ -5,7 +5,9 @@ import logo from "./assets/logo.png";
 import AppCss from "./assets/styles/base.css?inline";
 import { WindowSelection } from "./constants/types";
 
-const CURRENCY_EXCHANGER_TAG_NAME = "currency-exchanger";
+export const CURRENCY_EXCHANGER_TAG_NAME = "currency-exchanger";
+
+export const CURRENCY_EXCHANGER_WIDTH = 322;
 
 // Style for outer component (launch button, cancel button, conversion form)
 export function loadComponentStyleIntoDom() {
@@ -41,7 +43,7 @@ export function loadComponentStyleIntoDom() {
   }
   ${CURRENCY_EXCHANGER_TAG_NAME} {
     position: absolute;
-    width: 332px;
+    width: ${CURRENCY_EXCHANGER_WIDTH}px;
     background-color: white;
     z-index: 999999999;
     border-radius: 12px;
@@ -94,9 +96,6 @@ export function appendConverterPopUpForm(
   app: VueApp;
 } {
   const converterForm = document.createElement(CURRENCY_EXCHANGER_TAG_NAME);
-
-  // Register the tag for currency exchanger as a web component in the page context
-  customElements.define(CURRENCY_EXCHANGER_TAG_NAME, HTMLElement);
 
   document.body.appendChild(converterForm);
 

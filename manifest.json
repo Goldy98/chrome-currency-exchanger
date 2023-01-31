@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Currency Exchanger",
-  "description": "A simple currency exchange extension (including XOF)",
+  "description": "A simple currency exchange extension (including XOF & BitCoin)",
   "host_permissions": ["https://api.exchangerate.host/*"],
   "author": "sagboaime267@gmail.com",
   "version": "0.0.1",
