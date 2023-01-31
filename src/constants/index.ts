@@ -6,4 +6,5 @@ export const SUPPORTED_CURRENCY_SYMBOLS = {
   "£": "GBP",
   EUR: "EUR",
   USD: "USD",
+  BTC: "BTC",
 };
