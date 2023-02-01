@@ -11,7 +11,7 @@
 
 ## How to install
 
-Install the [official Chrome Extension](https://chrome.google.com/webstore/detail/tailwind-color-picker/iaknbjonlhaajcfpfcimahgpfknpihfm) today!
+Install the [official Chrome Extension](https://chrome.google.com/webstore/detail/currency-exchanger/oopabpebofepcnmiopgcfjndeckpfbjc) today!
 
 ## Motivation
 
